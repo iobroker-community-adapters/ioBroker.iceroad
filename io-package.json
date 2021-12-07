@@ -70,7 +70,6 @@
     "readme": "https://github.com/Patrick-Walther/ioBroker.iceroad/blob/master/README.md",
     "loglevel": "info",
     "type": "general"
-        "installedFrom": "https://github.com/Patrick-Walther/ioBroker.iceroad/tarball/master"
   },
   "native": {},
   "objects": [],
