@@ -1,0 +1,138 @@
+{
+  "common": {
+    "name": "iceroad",
+    "version": "0.0.1",
+    "news": {
+      "0.0.1": {
+        "en": "initial adapter",
+        "de": "Erstadapter",
+        "ru": "начальный адаптер",
+        "pt": "adaptador inicial",
+
+        "nl": "initiële adapter",
+        "fr": "adaptateur initial",
+        "it": "adattatore iniziale",
+        "es": "adaptador inicial",
+        "pl": "początkowy adapter",
+        "zh-cn": "初始适配器"
+      }
+    },
+    "title": {
+      "en": "ice road",
+      "de": "Eisstraße",
+      "ru": "ледяная дорога",
+      "pt": "estrada de gelo",
+      "nl": "ijsweg",
+      "fr": "route de glace",
+      "it": "strada di ghiaccio",
+      "es": "camino de hielo",
+      "pl": "lodowa droga",
+      "zh-cn": "冰路"
+    },
+    "desc": {
+      "en": "warning for ice road",
+      "de": "Warnung vor eis Straße",
+      "ru": "предупреждение о черной дороге",
+      "pt": "aviso para estrada negra",
+      "nl": "waarschuwing voor zwarte weg",
+      "fr": "avertissement pour route noire",
+      "it": "avviso per strada nera",
+      "es": "advertencia por camino negro",
+      "pl": "ostrzeżenie o czarnej drodze",
+      "zh-cn": "黑色道路警告"
+    },
+    "authors": [
+      "Patrick Walther <walther-patrick@gmx.net>"
+    ],
+    "docs": {
+      "en": "docs/en/admin.md",
+      "ru": "docs/ru/admin.md",
+      "de": "docs/de/admin.md",
+      "es": "docs/es/admin.md",
+      "it": "docs/it/admin.md",
+      "fr": "docs/fr/admin.md",
+      "nl": "docs/nl/admin.md",
+      "pt": "docs/pt/admin.md"
+    },
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "template.png",
+    "materialize": true,
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/Patrick-Walther/ioBroker.iceroad/master/admin/template.png",
+    "keywords": [
+      "warning",
+      "black road",
+      "ice",
+      "road",
+      "vereiste Straße"
+    ],
+    "readme": "https://github.com/Patrick-Walther/ioBroker.iceroad/blob/master/README.md",
+    "loglevel": "info",
+    "type": "general"
+  },
+  "native": {},
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "requestDate",
+      "type": "state",
+      "common": {
+        "role": "value.time",
+        "name": "requestDate",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "forecastId",
+      "type": "state",
+      "common": {
+        "role": "value",
+        "name": "forecastId",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "forecastText",
+      "type": "state",
+      "common": {
+        "role": "value",
+        "name": "forecastText",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "forecastCity",
+      "type": "state",
+      "common": {
+        "role": "value",
+        "name": "forecastCity",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "forecastDate",
+      "type": "state",
+      "common": {
+        "role": "value.time",
+        "name": "forecastDate",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    }
+  ]
+}
