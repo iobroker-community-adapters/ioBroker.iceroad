@@ -22,9 +22,6 @@ you become your API (free of charge) from "https://www.eiswarnung.de/rest-api/".
 When you installed this adapter, the adapter will automatic fill out the longitude and latiude from iobroker-settings (if you fill out the settigngs).
 If you don't fill out the iobroker settings you can find your data at https://www.gpskoordinaten.de/.
 
-Ansonten werden die Daten stündlich abgerufen.
+The data is retrieved every hour.
 
-Viel Spaß mit dem Adapter.
-
-
-
+Have fun with the adapter.
