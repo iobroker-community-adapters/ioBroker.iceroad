@@ -74,7 +74,7 @@
     },
     {
         "js-controller": ">=3.2.0"
-    }
+    },
     "keywords": [
       "warning",
       "black road",
