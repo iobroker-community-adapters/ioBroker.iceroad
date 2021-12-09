@@ -1,4 +1,4 @@
-![Logo](admin/template2.png)
+![Logo](docs/de/img/iceroad.png)
 # ioBroker.iceroad
 
 **If you like it, please consider a donation:**
