@@ -29,6 +29,18 @@
       "pl": "lodowa droga",
       "zh-cn": "冰路"
     },
+    "titleLang": {
+      "en": "iceroad",
+      "de": "Eisstraße",
+      "ru": "ледокол",
+      "pt": "iceroad",
+      "nl": "ijsweg",
+      "fr": "route de glace",
+      "it": "strada del ghiaccio",
+      "es": "camino de hielo",
+      "pl": "Lodowa Droga",
+      "zh-cn": "冰路"
+        },
     "desc": {
       "en": "warning for ice road",
       "de": "Warnung vor eis Straße",
@@ -58,7 +70,7 @@
     "mode": "daemon",
     "icon": "template.png",
     "materialize": true,
-    "enabled": true,
+    "enabled": false,
     "extIcon": "https://raw.githubusercontent.com/Patrick-Walther/ioBroker.iceroad/master/admin/template.png",
     "keywords": [
       "warning",
