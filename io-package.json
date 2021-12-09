@@ -68,12 +68,20 @@
     "materialize": true,
     "enabled": false,
     "extIcon": "https://raw.githubusercontent.com/Patrick-Walther/ioBroker.iceroad/master/admin/template.png",
+    "dependencies": [
+    {
+        "admin": ">=3.0.0"
+    },
+    {
+        "js-controller": ">=3.2.0"
+    }
     "keywords": [
       "warning",
       "black road",
       "ice",
-      "road",
-      "vereiste Straße"
+      "Frontscheibe",
+      "vereiste Frontscheibe",
+      "eisy front window"
     ],
     "readme": "https://github.com/Patrick-Walther/ioBroker.iceroad/blob/master/README.md",
     "loglevel": "info",
