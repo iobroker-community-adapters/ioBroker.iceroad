@@ -1,6 +1,6 @@
 {
   "common": {
-    "name": "ioBroker.iceroad",
+    "name": "iceroad",
     "version": "0.0.1",
     "news": {
       "0.0.1": {
