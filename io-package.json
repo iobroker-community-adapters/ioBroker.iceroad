@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "iceroad",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "news": {
+      "0.1.0": {
+        "en": "add new location, add email",
+        "de": "neuen Standort hinzufügen, E-Mail hinzufügen",
+        "ru": "добавить новое место, добавить адрес электронной почты",
+        "pt": "adicionar novo local, adicionar e-mail",
+        "nl": "nieuwe locatie toevoegen, e-mail toevoegen",
+        "fr": "ajouter un nouvel emplacement, ajouter un e-mail",
+        "it": "aggiungi nuova posizione, aggiungi email",
+        "es": "agregar nueva ubicación, agregar correo electrónico",
+        "pl": "dodaj nową lokalizację, dodaj e-mail",
+        "zh-cn": "添加新位置，添加电子邮件"
+      },
       "0.0.1": {
         "en": "initial adapter",
         "de": "Erstadapter",
@@ -28,18 +40,6 @@
       "pl": "lodowa droga",
       "zh-cn": "冰路"
     },
-    "titleLang": {
-      "en": "iceroad",
-      "de": "Eisstraße",
-      "ru": "ледокол",
-      "pt": "iceroad",
-      "nl": "ijsweg",
-      "fr": "route de glace",
-      "it": "strada del ghiaccio",
-      "es": "camino de hielo",
-      "pl": "Lodowa Droga",
-      "zh-cn": "冰路"
-        },
     "desc": {
       "en": "warning for ice road",
       "de": "Warnung vor eis Straße",
@@ -55,102 +55,43 @@
     "authors": [
       "Patrick Walther <walther-patrick@gmx.net>"
     ],
-     "dependencies": [
-            {
-                "admin": ">=3.0.0"
-            },
-            {
-                "js-controller": ">=3.2.0"
-            }
-    ],
     "docs": {
       "en": "docs/en/admin.md",
-      "de": "docs/de/admin.md"
+      "ru": "docs/ru/admin.md",
+      "de": "docs/de/admin.md",
+      "es": "docs/es/admin.md",
+      "it": "docs/it/admin.md",
+      "fr": "docs/fr/admin.md",
+      "nl": "docs/nl/admin.md",
+      "pt": "docs/pt/admin.md"
     },
-    "license": "MIT",
     "platform": "Javascript/Node.js",
-    "mode": "daemon",
+    "loglevel": "info",
+    "stopBeforeUpdate": true,
+    "type": "general",
     "icon": "template.png",
+    "messagebox": true,
+    "subscribe": "messagebox",
+    "dataSource": "poll",
+    "mode": "schedule",
+    "schedule": "0 * * * *",
+    "allowInit": true,
     "connectionType": "cloud",
-    "dataSource": "push",
     "materialize": true,
+    "compact": true,
     "enabled": false,
     "extIcon": "https://raw.githubusercontent.com/Patrick-Walther/ioBroker.iceroad/master/admin/template.png",
     "keywords": [
       "warning",
       "black road",
       "ice",
-      "Frontscheibe",
-      "vereiste Frontscheibe",
-      "eisy front window"
+      "road",
+      "vereiste Straße"
     ],
-    "readme": "https://github.com/Patrick-Walther/ioBroker.iceroad/blob/master/README.md",
-    "loglevel": "info",
-    "type": "general"
+    "readme": "https://github.com/Patrick-Walther/ioBroker.iceroad/blob/master/README.md"
   },
-
   "native": {},
   "objects": [],
   "instanceObjects": [
-    {
-      "_id": "requestDate",
-      "type": "state",
-      "common": {
-        "role": "value.time",
-        "name": "requestDate",
-        "type": "string",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "forecastId",
-      "type": "state",
-      "common": {
-        "role": "value",
-        "name": "forecastId",
-        "type": "number",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "forecastText",
-      "type": "state",
-      "common": {
-        "role": "value",
-        "name": "forecastText",
-        "type": "string",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "forecastCity",
-      "type": "state",
-      "common": {
-        "role": "value",
-        "name": "forecastCity",
-        "type": "string",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },
-    {
-      "_id": "forecastDate",
-      "type": "state",
-      "common": {
-        "role": "value.time",
-        "name": "forecastDate",
-        "type": "string",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    }
   ]
 }

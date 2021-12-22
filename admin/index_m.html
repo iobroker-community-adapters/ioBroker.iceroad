@@ -17,6 +17,18 @@
 		<!-- you have to define 2 functions in the global scope: -->
 		<script type="text/javascript">
 
+
+			document.addEventListener('DOMContentLoaded', function() {
+				var elems = document.querySelectorAll('.collapsible');
+				var instances = M.Collapsible.init(elems, options);
+			});
+
+			// Or with jQuery
+
+			$(document).ready(function(){
+				$('.collapsible').collapsible();
+			});
+
 			// the function loadSettings has to exist ...
 			function load(settings, onChange) {
 				// example: select elements with id=key and class=value and insert value
@@ -46,11 +58,11 @@
 
 			function fillPosition() {
 			socket.emit('getObject', 'system.config', function (err, obj) {
-				if ($('#longitude').val() === '') {
-					$('#longitude').val(obj.common.longitude).trigger('change');
+				if ($('#longitude1').val() === '') {
+					$('#longitude1').val(obj.common.longitude).trigger('change');
 				}
-				if ($('#latitude').val() === '') {
-					$('#latitude').val(obj.common.latitude).trigger('change');
+				if ($('#latitude1').val() === '') {
+					$('#latitude1').val(obj.common.latitude).trigger('change');
 				}
 			});
 			}
@@ -74,50 +86,355 @@
 		</script>
 	</head>
 	<body>
-		<!-- you have to put your config page in a div with id adapter-container -->
-		<div class="m adapter-container">
-			<!--logo -->
-			<div id="header-area" class="row" >
-				<div id="header-logo-title" class="col s6" >
-					<img class="logo" src="template.png" >
-					<p>
-						<span class="translate h-title">ice road- </span>
-						<span class="translate h-sub-title"> Warning for ice Road</span>
-					</p>
-				</div>
+	<!-- you have to put your config page in a div with id adapter-container -->
+	<div class="m adapter-container">
+		<!--logo -->
+		<div id="header-area" class="row" >
+			<div id="header-logo-title" class="col s6" >
+				<img class="logo" src="template.png" >
+				<p>
+					<span class="translate h-title">icy window - </span>
+					<span class="translate h-sub-title"> Warning for frozen Window</span>
+				</p>
 			</div>
-
-				<div id="body-area" class="row">
+		</div>
+		<!-- List dropdown-->
+		<ul class="collapsible">
+			<!-- Settings -->
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">expand_more</i>
+					<h6 id="settings" class="translate">Settings</h6>
+				</div>
+				<div class="collapsible-body">
 					<div class="row">
 						<div class="col s3 input-field">
 							<input type="text" class="value" id="linkdata" />
-							<span for="linkdata">Link von Eis Warnung</span>
-							<label for="linkdata" class="translate">Link von Eis Warnung</label>
+							<span for="linkdata">Link from eiswarnung</span>
+							<label for="linkdata" class="translate">Link from eiswarnung</label>
 							<label for="linkdata" class="translate"></label>
+							<span class="translate">https://api.eiswarnung.de/</span>
+						</div>
+
+					</div>
+				</div>
+			</li>
+			<!-- Location1 -->
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">expand_more</i>
+					<h6 id="location1" class="translate">Location1</h6>
+				</div>
+				<div class="collapsible-body">
+
+					<div class="row">
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="longitude1" />
+							<span for="longitude1">Längengrad</span>
+							<label for="longitude1" class="translate">longitude</label>
+						</div>
+
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="latitude1" />
+							<span for="latitude1">Breitengrad</span>
+							<label for="latitude1" class="translate">latitude</label>
+						</div>
+
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="Location_Name1" />
+							<span for="Location_Name1">Location Name</span>
+							<label for="Location_Name1" class="translate">Location Name</label>
 						</div>
 
 						<div class="col s3 input-field">
-							<input type="text" class="value" id="APIK" />
-							<span for="APIK">API Schlüssel</span>
-							<label for="APIK" class="translate">API Key</label>
+							<input type="text" class="value" id="APIK1" />
+							<span for="APIK1">API Schlüssel</span>
+							<label for="APIK1" class="translate">API Key</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="mail_active1" />
+								<span class="translate">active email</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_from1" />
+								<span for="email_from1">E-Mail from</span>
+								<label for="email_from1" class="translate">E-Mail from</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_to1" />
+								<span for="email_to1">e-mail to</span>
+								<label for="email_to1" class="translate">comma separated multiple recipients</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_subject1" />
+								<span for="email_subject1">e-mail subject</span>
+								<label for="email_subject1" class="translate">e-mail subject</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_message1" />
+								<span for="email_message1">e-mail massage</span>
+								<label for="email_message1" class="translate">e-mail massage</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<!-- Location2 -->
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">expand_more</i>
+					<h6 id="location2" class="translate">Location2</h6>
+				</div>
+				<div class="collapsible-body">
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="location_active2" />
+								<span class="translate">Active Location</span>
+							</div>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col s2 input-field">
-							<input type="text"  class="value" id="longitude" />
-							<span for="longitude">Längengrad</span>
-							<label for="longitude" class="translate">longitude</label>
+							<input type="text"  class="value" id="longitude2" />
+							<span for="longitude2">Längengrad</span>
+							<label for="longitude2" class="translate">longitude</label>
 						</div>
 
 						<div class="col s2 input-field">
-							<input type="text"  class="value" id="latitude" />
-							<span for="latitude">Breitengrad</span>
-							<label for="latitude" class="translate">latitude</label>
+							<input type="text"  class="value" id="latitude2" />
+							<span for="latitude2">Breitengrad</span>
+							<label for="latitude2" class="translate">latitude</label>
+						</div>
+
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="Location_Name2" />
+							<span for="Location_Name2">Location Name</span>
+							<label for="Location_Name2" class="translate">Location Name</label>
+						</div>
+
+						<div class="col s3 input-field">
+							<input type="text" class="value" id="APIK2" />
+							<span for="APIK1">API Schlüssel</span>
+							<label for="APIK1" class="translate">API Key</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="mail_active2" />
+								<span class="translate">active email</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_from2" />
+								<span for="email_from2">E-Mail from</span>
+								<label for="email_from2" class="translate">E-Mail from</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_to2" />
+								<span for="email_to2">e-mail to</span>
+								<label for="email_to2" class="translate">comma separated multiple recipients</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_subject2" />
+								<span for="email_subject2">e-mail subject</span>
+								<label for="email_subject2" class="translate">e-mail subject</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_message2" />
+								<span for="email_message2">e-mail massage</span>
+								<label for="email_message2" class="translate">e-mail massage</label>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</li>
+			<!-- Location3 -->
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">expand_more</i>
+					<h6 id="location3" class="translate">Location3</h6>
+				</div>
+				<div class="collapsible-body">
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="location_active3" />
+								<span class="translate">Active Location</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="longitude3" />
+							<span for="longitude3>Längengrad</span>
+							<label for="longitude3" class="translate">longitude</label>
+						</div>
+
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="latitude3" />
+							<span for="latitude3">Breitengrad</span>
+							<label for="latitude3" class="translate">latitude</label>
+						</div>
+
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="Location_Name3" />
+							<span for="Location_Name3">Location Name</span>
+							<label for="Location_Name3" class="translate">Location Name</label>
+						</div>
+
+						<div class="col s3 input-field">
+							<input type="text" class="value" id="APIK3" />
+							<span for="APIK3">API Schlüssel</span>
+							<label for="APIK3" class="translate">API Key</label>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="mail_active3" />
+								<span class="translate">active email</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_from3" />
+								<span for="email_from3">E-Mail from</span>
+								<label for="email_from3" class="translate">E-Mail from</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_to3" />
+								<span for="email_to3">e-mail to</span>
+								<label for="email_to3" class="translate">comma separated multiple recipients</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_subject3" />
+								<span for="email_subject3>e-mail subject</span>
+								<label for="email_subject3 class="translate">e-mail subject</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_message3" />
+								<span for="email_message3">e-mail massage</span>
+								<label for="email_message3" class="translate">e-mail massage</label>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</li>
+			<!-- Location4 -->
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">expand_more</i>
+					<h6 id="location4" class="translate">Location4</h6>
+				</div>
+				<div class="collapsible-body">
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="location_active4" />
+								<span class="translate">Active Location</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="longitude4" />
+							<span for="longitude3>Längengrad</span>
+							<label for="longitude3" class="translate">longitude</label>
+						</div>
+
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="latitude4" />
+							<span for="latitude4">Breitengrad</span>
+							<label for="latitude4" class="translate">latitude</label>
+						</div>
+
+						<div class="col s2 input-field">
+							<input type="text"  class="value" id="Location_Name4" />
+							<span for="Location_Name4">Location Name</span>
+							<label for="Location_Name4" class="translate">Location Name</label>
+						</div>
+						<div class="col s3 input-field">
+							<input type="text" class="value" id="APIK4" />
+							<span for="APIK4">API Schlüssel</span>
+							<label for="APIK4" class="translate">API Key</label>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="mail_active4" />
+								<span class="translate">active email</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_from4" />
+								<span for="email_from4">E-Mail from</span>
+								<label for="email_from4" class="translate">E-Mail from</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_to4" />
+								<span for="email_to4">e-mail to</span>
+								<label for="email_to4" class="translate">comma separated multiple recipients</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_subject4" />
+								<span for="email_subject4">e-mail subject</span>
+								<label for="email_subject4" class="translate">e-mail subject</label>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="text" class="value" id="email_message4" />
+								<span for="email_message4">e-mail massage</span>
+								<label for="email_message4" class="translate">e-mail massage</label>
+							</div>
 						</div>
 					</div>
 				</div>
-
-		</div>
+			</li>
+		</ul>
+	</div>
 	</body>
+
 </html>
