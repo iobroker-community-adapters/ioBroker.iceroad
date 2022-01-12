@@ -16,10 +16,10 @@
 #header-area #header-logo-title p>span.h-title {font-size: 2em !important; color:white; }
 #header-area #header-logo-title p>span.h-sub-title {font-size: 1.1em !important; color:white; font-style: italic; padding: 20px 0 0 8px;}
 
-#body-area {margin-top: 20px; margin-bottom: 1px; }
+#body-area {margin-top: 10px; margin-bottom: 1px;  background-color:#007a99;}
 #body-area #body-logo-title .logo {float:left; margin-right: 10px;}
-#body-area #body-logo-title p {line-height: normal !important; margin: 0 !important; padding: 20px 0 0 8px;}
-#body-area #body-logo-title p>span.h-title {font-size: 2em !important; color:white; }
+#body-area #body-logo-title p {line-height: normal !important; margin: 0 !important; padding: 10px 0 0 8px;}
+#body-area #body-logo-title p>span.h-title {font-size: 1.1em !important; color:white; }
 #body-area #body-logo-title p>span.h-sub-title {font-size: 1.1em !important; color:white; font-style: italic; padding: 20px 0 0 8px;}
 
 .m .col .select-wrapper + label {

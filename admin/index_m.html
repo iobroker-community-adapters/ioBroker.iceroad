@@ -33,26 +33,50 @@
 			function load(settings, onChange) {
 				// example: select elements with id=key and class=value and insert value
 			   if (!settings) return;
+
 				$('.value').each(function () {
 					var $key = $(this);
 					var id = $key.attr('id');
 					if ($key.attr('type') === 'checkbox') {
 						// do not call onChange direct, because onChange could expect some arguments
 						$key.prop('checked', settings[id]).change(function() {
+							hideshow();
 							onChange();
 						});
 					} else {
 						// do not call onChange direct, because onChange could expect some arguments
 						$key.val(settings[id]).change(function() {
+							hideshow();
 							onChange();
 						}).keyup(function() {
+
 							onChange();
 						});
 					}
 				});
 
 				fillPosition();
+				getAdapterInstances('email', function (instances) {
+					fillInstances('email_drop1', instances, settings['email_drop1']);
+					fillInstances('email_drop2', instances, settings['email_drop2']);
+					fillInstances('email_drop3', instances, settings['email_drop3']);
+					fillInstances('email_drop4', instances, settings['email_drop4']);
+				});
+				getAdapterInstances('pushover', function (instances) {
+					fillInstances('pushover_drop1', instances, settings['pushover_drop1']);
+					fillInstances('pushover_drop2', instances, settings['pushover_drop2']);
+					fillInstances('pushover_drop3', instances, settings['pushover_drop3']);
+					fillInstances('pushover_drop4', instances, settings['pushover_drop4']);
+				});
+				getAdapterInstances('telegram', function (instances) {
+					fillInstances('telegram_drop1', instances, settings['telegram_drop1']);
+					fillInstances('telegram_drop2', instances, settings['telegram_drop2']);
+					fillInstances('telegram_drop3', instances, settings['telegram_drop3']);
+					fillInstances('telegram_drop4', instances, settings['telegram_drop4']);
+				});
+
 				$('#linkdata').val('https://api.eiswarnung.de/').trigger('change');
+
 				onChange(false);
 			}
 
@@ -65,6 +89,80 @@
 					$('#latitude1').val(obj.common.latitude).trigger('change');
 				}
 			});
+			}
+
+
+			function fillInstances(id, arr, val) {
+				var $sel = $('#' + id);
+				$sel.html('<option value="">' + _('none') + '</option>');
+				for (var i = 0; i < arr.length; i++) {
+					var _id = arr[i]._id.replace('system.adapter.', '');
+					$sel.append('<option value="' + _id + '"' + (_id === val ? ' selected' : '') + '>' + _id + '</option>');
+				}
+				var _id2 = arr[0]._id.replace('system.adapter.', '');
+				_id2= _id2.slice(0, -2);
+				$sel.append('<option value="' + _id2 + '"' + (_id2 === val ? ' selected' : '') + '>' + _id2 + '</option>');
+				$sel.select();
+			}
+
+			function hideshow(){
+				//location - email - pushover - telegram
+				for (var i = 1; i < 5; i++) {
+					if ($('#mail_active' + i).prop('checked')) {
+						$('.email_hide' + i).show();
+					} else {
+						$('.email_hide' + i).hide();
+					}
+
+					if ($('#pushover_active' + i).prop('checked')) {
+						$('.pushover_hide' + i).show();
+					} else {
+						$('.pushover_hide' + i).hide();
+					}
+
+					if ($('#telegram_active' + i).prop('checked')) {
+						$('.telegram_hide' + i).show();
+					} else {
+						$('.telegram_hide' + i).hide();
+					}
+				}
+				//location2
+/*
+				if ($('#mail_active2').prop('checked')) {
+					$('.email_hide1').show();
+
+				} else {
+					$('.email_hide1').hide();
+				}
+
+				if ($('#pushover_active2').prop('checked')) {
+					$('.pushover_hide1').show();
+
+				} else {
+					$('.pushover_hide1').hide();
+				}
+
+				if ($('#telegram_active2').prop('checked')) {
+					$('.telegram_hide1').show();
+
+				} else {
+					$('.telegram_hide1').hide();
+				}
+				*/
+
+			}
+
+			function fillInstances(id, arr, val) {
+				var $sel = $('#' + id);
+				$sel.html('<option value="">' + _('none') + '</option>');
+				for (var i = 0; i < arr.length; i++) {
+					var _id = arr[i]._id.replace('system.adapter.', '');
+					$sel.append('<option value="' + _id + '"' + (_id === val ? ' selected' : '') + '>' + _id + '</option>');
+				}
+				var _id2 = arr[0]._id.replace('system.adapter.', '');
+				_id2= _id2.slice(0, -2);
+				$sel.append('<option value="' + _id2 + '"' + (_id2 === val ? ' selected' : '') + '>' + _id2 + '</option>');
+				$sel.select();
 			}
 
 			// ... and the function save has to exist.
@@ -93,7 +191,7 @@
 			<div id="header-logo-title" class="col s6" >
 				<img class="logo" src="template.png" >
 				<p>
-					<span class="translate h-title">icy window - </span>
+					<span class="translate h-title">Iceroad - </span>
 					<span class="translate h-sub-title"> Warning for frozen Window</span>
 				</p>
 			</div>
@@ -116,6 +214,10 @@
 							<span class="translate">https://api.eiswarnung.de/</span>
 						</div>
 
+						<div class="input-field col s3">
+							<input type="checkbox" class="value" id="test_massage" />
+							<span class="translate">test massage</span>
+						</div>
 					</div>
 				</div>
 			</li>
@@ -125,8 +227,8 @@
 					<i class="material-icons">expand_more</i>
 					<h6 id="location1" class="translate">Location1</h6>
 				</div>
-				<div class="collapsible-body">
 
+				<div class="collapsible-body">
 					<div class="row">
 						<div class="col s2 input-field">
 							<input type="text"  class="value" id="longitude1" />
@@ -152,41 +254,142 @@
 							<label for="APIK1" class="translate">API Key</label>
 						</div>
 					</div>
+
+					<!-- email -->
 					<div class="row">
 						<div class="row">
 							<div class="input-field col s3">
 								<input type="checkbox" class="value" id="mail_active1" />
 								<span class="translate">active email</span>
 							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="pushover_active1" />
+								<span class="translate">active pushover</span>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="telegram_active1" />
+								<span class="translate">active telegram</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row email_hide1">
+						<div id="body-area" class="row" >
+							<div id="body-logo-title" class="col s6" >
+								<p>
+									<span class="translate h-title">E-Mail</span>
+								</p>
+							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="row">
-							<div class="input-field col s3">
+							<div class="input-field col s2 email_hide1">
+								<select class="value" id="email_drop1">
+									<option value="Choose a Instance" class="translate">Choose a Instance</option>
+									<option value="Choose a Instance" class="translate">Choose a Instance</option>
+								</select>
+								<label for="email_drop1" class="translate"></label>
+								<span class="translate">Choose a Instance</span>
+							</div>
+
+							<div class="input-field col s3 email_hide1">
 								<input type="text" class="value" id="email_from1" />
 								<span for="email_from1">E-Mail from</span>
 								<label for="email_from1" class="translate">E-Mail from</label>
 							</div>
 
-							<div class="input-field col s3">
+							<div class="input-field col s3 email_hide1">
 								<input type="text" class="value" id="email_to1" />
 								<span for="email_to1">e-mail to</span>
 								<label for="email_to1" class="translate">comma separated multiple recipients</label>
 							</div>
 
-							<div class="input-field col s3">
+							<div class="input-field col s3 email_hide1">
 								<input type="text" class="value" id="email_subject1" />
 								<span for="email_subject1">e-mail subject</span>
 								<label for="email_subject1" class="translate">e-mail subject</label>
 							</div>
 
-							<div class="input-field col s3">
+							<div class="input-field col s11 email_hide1">
 								<input type="text" class="value" id="email_message1" />
 								<span for="email_message1">e-mail massage</span>
 								<label for="email_message1" class="translate">e-mail massage</label>
 							</div>
+					</div>
+					<!--pushover-->
+					<div class="row pushover_hide1">
+						<div class="row ">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Pushover</span>
+									</p>
+								</div>
+							</div>
 						</div>
+
+							<div class="input-field col s2 pushover_hide1">
+								<select class="value" id="pushover_drop1">
+									<option value="Choose a Instance" class="translate">Choose a Instance</option>
+								</select>
+								<label for="pushover_drop1" class="translate"></label>
+								<span class="translate">Choose a Instance</span>
+							</div>
+
+							<div class="input-field col s3 pushover_hide1">
+								<input type="text" class="value" id="pushover_message1" />
+								<span for="pushover_message1">pushover message</span>
+								<label for="pushover_message1" class="translate">Pushover message</label>
+							</div>
+
+							<div class="input-field col s3 pushover_hide1">
+								<input type="text" class="value" id="pushover_title1" />
+								<span for="pushover_title1">Pushover title</span>
+								<label for="pushover_title1" class="translate">Pushover title</label>
+							</div>
+
+							<div class="input-field col s3 pushover_hide1">
+								<input type="number"  class="value" min="-2" max="2" id="pushover_prio1" />
+								<span for="pushover_prio1">Pushover priority (-2 low | 2 high)</span>
+								<label for="pushover_prio1" class="translate">Pushover priority (-2 low | 2 high)</label>
+							</div>
+					</div>
+
+					<!--telegram-->
+					<div class="row">
+						<div class="row telegram_hide1">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Telegram</span>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-field col s2 telegram_hide1">
+							<select class="value" id="telegram_drop1">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="telegram_drop1" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
+
+						<div class="input-field col s3 telegram_hide1">
+							<input type="text" class="value" id="telegram_user1" />
+							<span for="telegram_user1">telegram user</span>
+							<label for="telegram_user1" class="translate">telegram user</label>
+						</div>
+
+						<div class="input-field col s3 telegram_hide1">
+							<input type="text" class="value" id="telegram_text1" />
+							<span for="telegram_text1">telegram text</span>
+							<label for="telegram_text1" class="translate">telegram text</label>
+						</div>
+
 					</div>
 				</div>
 			</li>
@@ -196,14 +399,11 @@
 					<i class="material-icons">expand_more</i>
 					<h6 id="location2" class="translate">Location2</h6>
 				</div>
+
 				<div class="collapsible-body">
-					<div class="row">
-						<div class="row">
-							<div class="input-field col s3">
-								<input type="checkbox" class="value" id="location_active2" />
-								<span class="translate">Active Location</span>
-							</div>
-						</div>
+					<div class="input-field col s3">
+						<input type="checkbox" class="value" id="location_active2" />
+						<span class="translate">active location</span>
 					</div>
 
 					<div class="row">
@@ -227,48 +427,148 @@
 
 						<div class="col s3 input-field">
 							<input type="text" class="value" id="APIK2" />
-							<span for="APIK1">API Schlüssel</span>
-							<label for="APIK1" class="translate">API Key</label>
+							<span for="APIK2">API Schlüssel</span>
+							<label for="APIK2" class="translate">API Key</label>
 						</div>
 					</div>
 
+					<!-- email -->
 					<div class="row">
 						<div class="row">
+
 							<div class="input-field col s3">
 								<input type="checkbox" class="value" id="mail_active2" />
 								<span class="translate">active email</span>
 							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="pushover_active2" />
+								<span class="translate">active pushover</span>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="telegram_active2" />
+								<span class="translate">active telegram</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row email_hide2">
+						<div id="body-area" class="row" >
+							<div id="body-logo-title" class="col s6" >
+								<p>
+									<span class="translate h-title">E-Mail</span>
+								</p>
+							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="row">
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_from2" />
-								<span for="email_from2">E-Mail from</span>
-								<label for="email_from2" class="translate">E-Mail from</label>
-							</div>
+						<div class="input-field col s2 email_hide2">
+							<select class="value" id="email_drop2">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="email_drop2" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_to2" />
-								<span for="email_to2">e-mail to</span>
-								<label for="email_to2" class="translate">comma separated multiple recipients</label>
-							</div>
+						<div class="input-field col s3 email_hide2">
+							<input type="text" class="value" id="email_from2" />
+							<span for="email_from2">E-Mail from</span>
+							<label for="email_from2" class="translate">E-Mail from</label>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_subject2" />
-								<span for="email_subject2">e-mail subject</span>
-								<label for="email_subject2" class="translate">e-mail subject</label>
-							</div>
+						<div class="input-field col s3 email_hide2">
+							<input type="text" class="value" id="email_to2" />
+							<span for="email_to2">e-mail to</span>
+							<label for="email_to2" class="translate">comma separated multiple recipients</label>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_message2" />
-								<span for="email_message2">e-mail massage</span>
-								<label for="email_message2" class="translate">e-mail massage</label>
+						<div class="input-field col s3 email_hide2">
+							<input type="text" class="value" id="email_subject2" />
+							<span for="email_subject2">e-mail subject</span>
+							<label for="email_subject2" class="translate">e-mail subject</label>
+						</div>
+
+						<div class="input-field col s11 email_hide2">
+							<input type="text" class="value" id="email_message2" />
+							<span for="email_message2">e-mail massage</span>
+							<label for="email_message2" class="translate">e-mail massage</label>
+						</div>
+					</div>
+					<!--pushover-->
+					<div class="row pushover_hide2">
+						<div class="row ">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Pushover</span>
+									</p>
+								</div>
 							</div>
+						</div>
+
+						<div class="input-field col s2 pushover_hide2">
+							<select class="value" id="pushover_drop2">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="pushover_drop2" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
+
+						<div class="input-field col s3 pushover_hide2">
+							<input type="text" class="value" id="pushover_message2" />
+							<span for="pushover_message2">pushover message</span>
+							<label for="pushover_message2" class="translate">Pushover message</label>
+						</div>
+
+						<div class="input-field col s3 pushover_hide2">
+							<input type="text" class="value" id="pushover_title2" />
+							<span for="pushover_title2">Pushover title</span>
+							<label for="pushover_title2" class="translate">Pushover title</label>
+						</div>
+
+						<div class="input-field col s3 pushover_hide2">
+							<input type="number"  class="value" min="-2" max="2" id="pushover_prio2" />
+							<span for="pushover_prio2">Pushover priority (-2 low | 2 high)</span>
+							<label for="pushover_prio2" class="translate">Pushover priority (-2 low | 2 high)</label>
 						</div>
 					</div>
 
+					<!--telegram-->
+					<div class="row">
+						<div class="row telegram_hide2">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Telegram</span>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-field col s2 telegram_hide2">
+							<select class="value" id="telegram_drop2">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="telegram_drop2" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
+
+						<div class="input-field col s3 telegram_hide2">
+							<input type="text" class="value" id="telegram_user2" />
+							<span for="telegram_user2">telegram user</span>
+							<label for="telegram_user2" class="translate">telegram user</label>
+						</div>
+
+						<div class="input-field col s3 telegram_hide2">
+							<input type="text" class="value" id="telegram_text2" />
+							<span for="telegram_text2">telegram text</span>
+							<label for="telegram_text2" class="translate">telegram text</label>
+						</div>
+
+					</div>
 				</div>
 			</li>
 			<!-- Location3 -->
@@ -277,20 +577,18 @@
 					<i class="material-icons">expand_more</i>
 					<h6 id="location3" class="translate">Location3</h6>
 				</div>
+
 				<div class="collapsible-body">
-					<div class="row">
-						<div class="row">
-							<div class="input-field col s3">
-								<input type="checkbox" class="value" id="location_active3" />
-								<span class="translate">Active Location</span>
-							</div>
-						</div>
+
+					<div class="input-field col s3">
+						<input type="checkbox" class="value" id="location_active3" />
+						<span class="translate">active location</span>
 					</div>
 
 					<div class="row">
 						<div class="col s2 input-field">
 							<input type="text"  class="value" id="longitude3" />
-							<span for="longitude3>Längengrad</span>
+							<span for="longitude3">Längengrad</span>
 							<label for="longitude3" class="translate">longitude</label>
 						</div>
 
@@ -313,45 +611,142 @@
 						</div>
 					</div>
 
-
+					<!-- email -->
 					<div class="row">
 						<div class="row">
 							<div class="input-field col s3">
 								<input type="checkbox" class="value" id="mail_active3" />
 								<span class="translate">active email</span>
 							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="pushover_active3" />
+								<span class="translate">active pushover</span>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="telegram_active3" />
+								<span class="translate">active telegram</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row email_hide3">
+						<div id="body-area" class="row" >
+							<div id="body-logo-title" class="col s6" >
+								<p>
+									<span class="translate h-title">E-Mail</span>
+								</p>
+							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="row">
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_from3" />
-								<span for="email_from3">E-Mail from</span>
-								<label for="email_from3" class="translate">E-Mail from</label>
-							</div>
+						<div class="input-field col s2 email_hide3">
+							<select class="value" id="email_drop3">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="email_drop3" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_to3" />
-								<span for="email_to3">e-mail to</span>
-								<label for="email_to3" class="translate">comma separated multiple recipients</label>
-							</div>
+						<div class="input-field col s3 email_hide3">
+							<input type="text" class="value" id="email_from3" />
+							<span for="email_from3">E-Mail from</span>
+							<label for="email_from3" class="translate">E-Mail from</label>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_subject3" />
-								<span for="email_subject3>e-mail subject</span>
-								<label for="email_subject3 class="translate">e-mail subject</label>
-							</div>
+						<div class="input-field col s3 email_hide3">
+							<input type="text" class="value" id="email_to3" />
+							<span for="email_to3">e-mail to</span>
+							<label for="email_to3" class="translate">comma separated multiple recipients</label>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_message3" />
-								<span for="email_message3">e-mail massage</span>
-								<label for="email_message3" class="translate">e-mail massage</label>
+						<div class="input-field col s3 email_hide3">
+							<input type="text" class="value" id="email_subject3" />
+							<span for="email_subject3">e-mail subject</span>
+							<label for="email_subject3" class="translate">e-mail subject</label>
+						</div>
+
+						<div class="input-field col s11 email_hide3">
+							<input type="text" class="value" id="email_message3" />
+							<span for="email_message3">e-mail massage</span>
+							<label for="email_message3" class="translate">e-mail massage</label>
+						</div>
+					</div>
+					<!--pushover-->
+					<div class="row pushover_hide3">
+						<div class="row ">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Pushover</span>
+									</p>
+								</div>
 							</div>
+						</div>
+
+						<div class="input-field col s2 pushover_hide3">
+							<select class="value" id="pushover_drop3">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="pushover_drop3" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
+
+						<div class="input-field col s3 pushover_hide3">
+							<input type="text" class="value" id="pushover_message3" />
+							<span for="pushover_message3">pushover message</span>
+							<label for="pushover_message3" class="translate">Pushover message</label>
+						</div>
+
+						<div class="input-field col s3 pushover_hide3">
+							<input type="text" class="value" id="pushover_title3" />
+							<span for="pushover_title3">Pushover title</span>
+							<label for="pushover_title3" class="translate">Pushover title</label>
+						</div>
+
+						<div class="input-field col s3 pushover_hide3">
+							<input type="number"  class="value" min="-2" max="2" id="pushover_prio3" />
+							<span for="pushover_prio3">Pushover priority (-2 low | 2 high)</span>
+							<label for="pushover_prio3" class="translate">Pushover priority (-2 low | 2 high)</label>
 						</div>
 					</div>
 
+					<!--telegram-->
+					<div class="row">
+						<div class="row telegram_hide3">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Telegram</span>
+									</p>
+								</div>
+							</div>
+						</div>
 
+						<div class="input-field col s2 telegram_hide3">
+							<select class="value" id="telegram_drop3">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="telegram_drop3" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
+
+						<div class="input-field col s3 telegram_hide3">
+							<input type="text" class="value" id="telegram_user3" />
+							<span for="telegram_user3">telegram user</span>
+							<label for="telegram_user3" class="translate">telegram user</label>
+						</div>
+
+						<div class="input-field col s3 telegram_hide3">
+							<input type="text" class="value" id="telegram_text3" />
+							<span for="telegram_text3">telegram text</span>
+							<label for="telegram_text3" class="translate">telegram text</label>
+						</div>
+
+					</div>
 				</div>
 			</li>
 			<!-- Location4 -->
@@ -360,21 +755,18 @@
 					<i class="material-icons">expand_more</i>
 					<h6 id="location4" class="translate">Location4</h6>
 				</div>
+
 				<div class="collapsible-body">
-					<div class="row">
-						<div class="row">
-							<div class="input-field col s3">
-								<input type="checkbox" class="value" id="location_active4" />
-								<span class="translate">Active Location</span>
-							</div>
-						</div>
+					<div class="input-field col s3">
+						<input type="checkbox" class="value" id="location_active4" />
+						<span class="translate">active location</span>
 					</div>
 
 					<div class="row">
 						<div class="col s2 input-field">
 							<input type="text"  class="value" id="longitude4" />
-							<span for="longitude3>Längengrad</span>
-							<label for="longitude3" class="translate">longitude</label>
+							<span for="longitude4">Längengrad</span>
+							<label for="longitude4" class="translate">longitude</label>
 						</div>
 
 						<div class="col s2 input-field">
@@ -388,6 +780,7 @@
 							<span for="Location_Name4">Location Name</span>
 							<label for="Location_Name4" class="translate">Location Name</label>
 						</div>
+
 						<div class="col s3 input-field">
 							<input type="text" class="value" id="APIK4" />
 							<span for="APIK4">API Schlüssel</span>
@@ -395,41 +788,141 @@
 						</div>
 					</div>
 
+					<!-- email1 -->
 					<div class="row">
 						<div class="row">
 							<div class="input-field col s3">
 								<input type="checkbox" class="value" id="mail_active4" />
 								<span class="translate">active email</span>
 							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="pushover_active4" />
+								<span class="translate">active pushover</span>
+							</div>
+
+							<div class="input-field col s3">
+								<input type="checkbox" class="value" id="telegram_active4" />
+								<span class="translate">active telegram</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row email_hide4">
+						<div id="body-area" class="row" >
+							<div id="body-logo-title" class="col s6" >
+								<p>
+									<span class="translate h-title">E-Mail</span>
+								</p>
+							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="row">
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_from4" />
-								<span for="email_from4">E-Mail from</span>
-								<label for="email_from4" class="translate">E-Mail from</label>
-							</div>
+						<div class="input-field col s2 email_hide4">
+							<select class="value" id="email_drop4">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="email_drop4" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_to4" />
-								<span for="email_to4">e-mail to</span>
-								<label for="email_to4" class="translate">comma separated multiple recipients</label>
-							</div>
+						<div class="input-field col s3 email_hide4">
+							<input type="text" class="value" id="email_from4" />
+							<span for="email_from4">E-Mail from</span>
+							<label for="email_from4" class="translate">E-Mail from</label>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_subject4" />
-								<span for="email_subject4">e-mail subject</span>
-								<label for="email_subject4" class="translate">e-mail subject</label>
-							</div>
+						<div class="input-field col s3 email_hide4">
+							<input type="text" class="value" id="email_to4" />
+							<span for="email_to4">e-mail to</span>
+							<label for="email_to4" class="translate">comma separated multiple recipients</label>
+						</div>
 
-							<div class="input-field col s3">
-								<input type="text" class="value" id="email_message4" />
-								<span for="email_message4">e-mail massage</span>
-								<label for="email_message4" class="translate">e-mail massage</label>
+						<div class="input-field col s3 email_hide4">
+							<input type="text" class="value" id="email_subject4" />
+							<span for="email_subject4">e-mail subject</span>
+							<label for="email_subject4" class="translate">e-mail subject</label>
+						</div>
+
+						<div class="input-field col s11 email_hide4">
+							<input type="text" class="value" id="email_message4" />
+							<span for="email_message4">e-mail massage</span>
+							<label for="email_message4" class="translate">e-mail massage</label>
+						</div>
+					</div>
+					<!--pushover-->
+					<div class="row pushover_hide4">
+						<div class="row ">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Pushover</span>
+									</p>
+								</div>
 							</div>
 						</div>
+
+						<div class="input-field col s2 pushover_hide4">
+							<select class="value" id="pushover_drop4">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="pushover_drop4" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
+
+						<div class="input-field col s3 pushover_hide4">
+							<input type="text" class="value" id="pushover_message4" />
+							<span for="pushover_message4">pushover message</span>
+							<label for="pushover_message4" class="translate">Pushover message</label>
+						</div>
+
+						<div class="input-field col s3 pushover_hide4">
+							<input type="text" class="value" id="pushover_title4" />
+							<span for="pushover_title4">Pushover title</span>
+							<label for="pushover_title4" class="translate">Pushover title</label>
+						</div>
+
+						<div class="input-field col s3 pushover_hide4">
+							<input type="number"  class="value" min="-2" max="2" id="pushover_prio4" />
+							<span for="pushover_prio4">Pushover priority (-2 low | 2 high)</span>
+							<label for="pushover_prio4" class="translate">Pushover priority (-2 low | 2 high)</label>
+						</div>
+					</div>
+
+					<!--telegram-->
+					<div class="row">
+						<div class="row telegram_hide4">
+							<div id="body-area" class="row" >
+								<div id="body-logo-title" class="col s6" >
+									<p>
+										<span class="translate h-title">Telegram</span>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-field col s2 telegram_hide4">
+							<select class="value" id="telegram_drop4">
+								<option value="Choose a Instance" class="translate">Choose a Instance</option>
+							</select>
+							<label for="telegram_drop4" class="translate"></label>
+							<span class="translate">Choose a Instance</span>
+						</div>
+
+						<div class="input-field col s3 telegram_hide4">
+							<input type="text" class="value" id="telegram_user4" />
+							<span for="telegram_user4">telegram user</span>
+							<label for="telegram_user4" class="translate">telegram user</label>
+						</div>
+
+						<div class="input-field col s3 telegram_hide4">
+							<input type="text" class="value" id="telegram_text4" />
+							<span for="telegram_text4">telegram text</span>
+							<label for="telegram_text4" class="translate">telegram text</label>
+						</div>
+
 					</div>
 				</div>
 			</li>

@@ -1,58 +1,63 @@
 {
   "name": "iobroker.iceroad",
-  "version": "0.1.0",
-  "description": "iceroad",
+  "version": "0.0.1",
+  "description": "forecast icy window",
   "author": {
-    "name": "Patrick Walther",
+    "name": "Patrick-Walther",
     "email": "walther-patrick@gmx.net"
   },
   "homepage": "https://github.com/Patrick-Walther/ioBroker.iceroad",
   "license": "MIT",
   "keywords": [
-    "warning",
-    "ice",
-    "road",
-    "forecast",
-    "ice road",
-    "vereist"
+    "weather forecast icy window"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Patrick-Walther/ioBroker.iceroad"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.4.0",
-    "request": "^2.72.0",
-    "node-schedule": "^1.3.0"
+    "@iobroker/adapter-core": "^2.5.1"
   },
   "devDependencies": {
-    "@iobroker/testing": "^2.4.2",
-    "@types/chai": "^4.2.15",
-    "@types/chai-as-promised": "^7.1.3",
-    "@types/gulp": "^4.0.8",
-    "@types/mocha": "^8.2.1",
-    "@types/node": "^14.14.33",
+    "@alcalzone/release-script": "^2.2.1",
+    "@iobroker/testing": "^2.5.2",
+    "@types/chai": "^4.3.0",
+    "@types/chai-as-promised": "^7.1.4",
+    "@types/gulp": "^4.0.9",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^14.18.3",
     "@types/proxyquire": "^1.3.28",
-    "@types/sinon": "^9.0.11",
-    "@types/sinon-chai": "^3.2.5",
-    "axios": "^0.21.1",
-    "chai": "^4.3.3",
+    "@types/sinon": "^10.0.6",
+    "@types/sinon-chai": "^3.2.7",
+    "axios": "^0.24.0",
+    "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^7.21.0",
+    "eslint": "^8.5.0",
     "gulp": "^4.0.2",
-    "mocha": "^8.3.1",
+    "mocha": "^9.1.3",
     "proxyquire": "^2.1.3",
-    "sinon": "^9.2.4",
-    "sinon-chai": "^3.5.0"
+    "sinon": "^12.0.1",
+    "sinon-chai": "^3.7.0",
+    "typescript": "~4.4.4"
   },
   "main": "main.js",
+  "files": [
+    "admin{,/!(src)/**}/!(tsconfig|tsconfig.*).json",
+    "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+    "lib/",
+    "io-package.json",
+    "LICENSE",
+    "main.js"
+  ],
   "scripts": {
-    "test:js": "mocha \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
+    "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit",
     "test": "npm run test:js && npm run test:package",
-    "lint": "eslint"
+    "check": "tsc --noEmit -p tsconfig.check.json",
+    "lint": "eslint",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/Patrick-Walther/ioBroker.iceroad/issues"

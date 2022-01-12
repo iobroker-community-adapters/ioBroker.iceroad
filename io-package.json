@@ -1,97 +1,79 @@
 {
-  "common": {
-    "name": "iceroad",
-    "version": "0.1.0",
-    "news": {
-      "0.1.0": {
-        "en": "add new location, add email",
-        "de": "neuen Standort hinzufügen, E-Mail hinzufügen",
-        "ru": "добавить новое место, добавить адрес электронной почты",
-        "pt": "adicionar novo local, adicionar e-mail",
-        "nl": "nieuwe locatie toevoegen, e-mail toevoegen",
-        "fr": "ajouter un nouvel emplacement, ajouter un e-mail",
-        "it": "aggiungi nuova posizione, aggiungi email",
-        "es": "agregar nueva ubicación, agregar correo electrónico",
-        "pl": "dodaj nową lokalizację, dodaj e-mail",
-        "zh-cn": "添加新位置，添加电子邮件"
-      },
-      "0.0.1": {
-        "en": "initial adapter",
-        "de": "Erstadapter",
-        "ru": "начальный адаптер",
-        "pt": "adaptador inicial",
-        "nl": "initiële adapter",
-        "fr": "adaptateur initial",
-        "it": "adattatore iniziale",
-        "es": "adaptador inicial",
-        "pl": "początkowy adapter",
-        "zh-cn": "初始适配器"
-      }
-    },
-    "title": {
-      "en": "ice road",
-      "de": "Eisstraße",
-      "ru": "ледяная дорога",
-      "pt": "estrada de gelo",
-      "nl": "ijsweg",
-      "fr": "route de glace",
-      "it": "strada di ghiaccio",
-      "es": "camino de hielo",
-      "pl": "lodowa droga",
-      "zh-cn": "冰路"
-    },
-    "desc": {
-      "en": "warning for ice road",
-      "de": "Warnung vor eis Straße",
-      "ru": "предупреждение о черной дороге",
-      "pt": "aviso para estrada negra",
-      "nl": "waarschuwing voor zwarte weg",
-      "fr": "avertissement pour route noire",
-      "it": "avviso per strada nera",
-      "es": "advertencia por camino negro",
-      "pl": "ostrzeżenie o czarnej drodze",
-      "zh-cn": "黑色道路警告"
-    },
-    "authors": [
-      "Patrick Walther <walther-patrick@gmx.net>"
-    ],
-    "docs": {
-      "en": "docs/en/admin.md",
-      "ru": "docs/ru/admin.md",
-      "de": "docs/de/admin.md",
-      "es": "docs/es/admin.md",
-      "it": "docs/it/admin.md",
-      "fr": "docs/fr/admin.md",
-      "nl": "docs/nl/admin.md",
-      "pt": "docs/pt/admin.md"
-    },
-    "platform": "Javascript/Node.js",
-    "loglevel": "info",
-    "stopBeforeUpdate": true,
-    "type": "general",
-    "icon": "template.png",
-    "messagebox": true,
-    "subscribe": "messagebox",
-    "dataSource": "poll",
-    "mode": "schedule",
-    "schedule": "0 * * * *",
-    "allowInit": true,
-    "connectionType": "cloud",
-    "materialize": true,
-    "compact": true,
-    "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/Patrick-Walther/ioBroker.iceroad/master/admin/template.png",
-    "keywords": [
-      "warning",
-      "black road",
-      "ice",
-      "road",
-      "vereiste Straße"
-    ],
-    "readme": "https://github.com/Patrick-Walther/ioBroker.iceroad/blob/master/README.md"
-  },
-  "native": {},
-  "objects": [],
-  "instanceObjects": [
-  ]
+	"common": {
+		"name": "iceroad",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版"
+			}
+		},
+		"title": "icy window",
+		"titleLang": {
+			"en": "icy window",
+			"de": "eisiges Fenster",
+			"ru": "ледяное окно",
+			"pt": "janela gelada",
+			"nl": "ijskoud raam",
+			"fr": "fenêtre glacée",
+			"it": "finestra ghiacciata",
+			"es": "ventana helada",
+			"pl": "lodowate okno",
+			"zh-cn": "冰冷的窗户"
+		},
+		"desc": {
+			"en": "forecast icy window",
+			"de": "prognostiziere eisiges fenster",
+			"ru": "прогноз ледяного окна",
+			"pt": "previsão de janela gelada",
+			"nl": "voorspelling ijzig venster",
+			"fr": "fenêtre glaciale de prévision",
+			"it": "previsione finestra ghiacciata",
+			"es": "previsión de ventana helada",
+			"pl": "prognoza lodowatego okna",
+			"zh-cn": "预测冰窗"
+		},
+		"authors": [
+			"Patrick-Walther <walther-patrick@gmx.net>"
+		],
+		"keywords": [
+			"weather forecast icy window"
+		],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "main.js",
+		"icon": "icywindow.png",
+		"enabled": false,
+		"extIcon": "https://raw.githubusercontent.com/Patrick-Walther/ioBroker.iceroad/main/admin/iceroad.png",
+		"readme": "https://github.com/Patrick-Walther/ioBroker.iceroad/blob/main/README.md",
+		"loglevel": "debug",
+		"mode": "schedule",
+		"schedule": "* * * * *",
+		"allowInit": true,
+		"type": "weather",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"materialize": true,
+		"messagebox": true,
+		"subscribe": "messagebox",
+		"dependencies": [
+			{
+				"js-controller": ">=2.0.0"
+			}
+		]
+	},
+	"native": {
+
+	},
+	"objects": [],
+	"instanceObjects": []
 }
