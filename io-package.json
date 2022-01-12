@@ -14,7 +14,7 @@
 			    "es": "agregar ubicaciones, agregar pushover/telegram/mail",
 			    "pl": "dodaj lokalizacje, dodaj pushover/telegram/mail",
 			    "zh-cn": "添加位置，添加pushover/电报/邮件"
-			}
+			},
 			"0.0.1": {
 				"en": "initial release",
 				"de": "Erstveröffentlichung",
