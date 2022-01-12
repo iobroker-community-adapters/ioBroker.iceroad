@@ -1,8 +1,20 @@
 {
 	"common": {
 		"name": "iceroad",
-		"version": "0.0.1",
+		"version": "0.1.",
 		"news": {
+			"0.1.0": {
+			    "en": "add locations, add pushover/telegram/mail",
+			    "de": "Standorte hinzufügen, Pushover/Telegramm/Mail hinzufügen",
+			    "ru": "добавить локации, добавить pushover/telegram/mail",
+			    "pt": "adicionar locais, adicionar pushover/telegram/mail",
+			    "nl": "voeg locaties toe, voeg pushover/telegram/mail toe",
+			    "fr": "ajouter des emplacements, ajouter pushover/télégramme/courrier",
+			    "it": "aggiungi posizioni, aggiungi pushover/telegramma/mail",
+			    "es": "agregar ubicaciones, agregar pushover/telegram/mail",
+			    "pl": "dodaj lokalizacje, dodaj pushover/telegram/mail",
+			    "zh-cn": "添加位置，添加pushover/电报/邮件"
+			}
 			"0.0.1": {
 				"en": "initial release",
 				"de": "Erstveröffentlichung",
