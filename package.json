@@ -1,7 +1,7 @@
 {
   "name": "iobroker.iceroad",
-  "version": "0.0.1",
-  "description": "forecast icy window",
+  "version": "0.1.0",
+  "description": "forecast iceroad",
   "author": {
     "name": "Patrick-Walther",
     "email": "walther-patrick@gmx.net"
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/Patrick-Walther/ioBroker.iceroad",
   "license": "MIT",
   "keywords": [
-    "weather forecast icy window"
+    "weather forecast iceroad"
   ],
   "repository": {
     "type": "git",
