@@ -27,7 +27,7 @@ forecast- ice window from your car
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2021 Patrick Walther walther-patrick@gmx.net
+Copyright (c) 2022 Patrick Walther walther-patrick@gmx.net
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
