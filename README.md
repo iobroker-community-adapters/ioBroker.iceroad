@@ -21,6 +21,9 @@ forecast- ice window from your car
 
 ## Changelog
 
+### 0.1.0
+* (Patrick Walther) add locations, add pushover/telegram/mail 
+
 ### 0.0.1
 * (Patrick Walther) initial release
 
