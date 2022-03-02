@@ -6,14 +6,14 @@
     "name": "Patrick-Walther",
     "email": "walther-patrick@gmx.net"
   },
-  "homepage": "https://github.com/Patrick-Walther/ioBroker.iceroad",
+  "homepage": "https://github.com/iobroker-community-adapters/ioBroker.iceroad",
   "license": "MIT",
   "keywords": [
     "weather forecast iceroad"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Patrick-Walther/ioBroker.iceroad"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.iceroad"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.5.1"
@@ -60,7 +60,7 @@
     "release": "release-script"
   },
   "bugs": {
-    "url": "https://github.com/Patrick-Walther/ioBroker.iceroad/issues"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.iceroad/issues"
   },
   "readmeFilename": "README.md"
 }
