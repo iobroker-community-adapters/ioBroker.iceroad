@@ -200,27 +200,43 @@ class Iceroad extends utils.Adapter {
 		this.log.debug("apikey: :" + apikey);
 
 		if (location_active1) {
-			urls[0] = link + '?key=' + apikey[0] + '&lat=' + lat[0] + '&lng=' + lon[0];
+			if (!link || !apikey[0] || !lat[0] || !lon[0]) {
+				this.log.error("Please check your config. Linkdata, API-key and location missing for location 1");
+			} else {
+				urls[0] = link + '?key=' + apikey[0] + '&lat=' + lat[0] + '&lng=' + lon[0];
+			}
 
 			this.log.debug("link0: :" + urls[0]);
 		}
 		if (location_active2) {
-			urls[1] = link + '?key=' + apikey[1] + '&lat=' + lat[1] + '&lng=' + lon[1];
+			if (!link || !apikey[0] || !lat[0] || !lon[0]) {
+				this.log.error("Please check your config. Linkdata, API-key and location missing for location 2");
+			} else {
+				urls[1] = link + '?key=' + apikey[1] + '&lat=' + lat[1] + '&lng=' + lon[1];
+			}
 			this.log.debug("link1: " + urls[1]);
 		}
 		if (location_active3) {
-			urls[2] = link + '?key=' + apikey[2] + '&lat=' + lat[2] + '&lng=' + lon[2];
+			if (!link || !apikey[0] || !lat[0] || !lon[0]) {
+				this.log.error("Please check your config. Linkdata, API-key and location missing for location 3");
+			} else {
+				urls[2] = link + '?key=' + apikey[2] + '&lat=' + lat[2] + '&lng=' + lon[2];
+			}
 			this.log.debug("link2: " + urls[2]);
 		}
 		if (location_active4) {
-			urls[3] = link + '?key=' + apikey[3] + '&lat=' + lat[3] + '&lng=' + lon[3];
+			if (!link || !apikey[0] || !lat[0] || !lon[0]) {
+				this.log.error("Please check your config. Linkdata, API-key and location missing for location 4");
+			} else {
+				urls[3] = link + '?key=' + apikey[3] + '&lat=' + lat[3] + '&lng=' + lon[3];
+			}
 			this.log.debug("link3: " + urls[3]);
 		}
 
 		for (let url_read_index = 0; url_read_index < 5; url_read_index++) {
 
 			//this.log.debug("ThisUrl: :" + thisUrl);
-			if (location_active[url_read_index] === true) {
+			if (location_active[url_read_index] && urls[url_read_index]) {
 				this.log.debug("location_active[url_read_index]: " + location_active[url_read_index]);
 				try {
 					const response = await axios({
