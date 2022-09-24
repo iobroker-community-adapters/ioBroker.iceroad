@@ -165,7 +165,7 @@
 		"telegram_user2": "",
 		"telegram_user3": "",
 		"telegram_user4": "",
-		"linkdata1": ""
+		"linkdata1": "https://api.eiswarnung.de/"
 	},
 	"objects": [],
 	"instanceObjects": []
