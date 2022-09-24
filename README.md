@@ -21,6 +21,9 @@ forecast- ice window from your car
 
 ## Changelog
 
+### __WORK IN PROGRESS__
+* (Apollon77) Make sure adapter stops when he is done
+
 ### 0.1.0
 * (Patrick Walther) add locations, add pushover/telegram/mail 
 

@@ -1,22 +1,9 @@
 'use strict';
 
-/*
- * Created with @iobroker/create-adapter v2.0.1
- */
-
-// The adapter-core module gives you access to the core ioBroker functions
-// you need to create an adapter
-
-
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios');
 
-// Load your modules here, e.g.:
-// const fs = require('fs');
-
-
-const options1 = ''; const options2 = ''; const options3 = ''; const options4= '';
-const urls = [options1,options2,options3,options4];
+const urls = ['', '', '',''];
 //const thisUrl ='';
 
 //define data
@@ -59,7 +46,7 @@ class Iceroad extends utils.Adapter {
 
 		await this.create_delete_state();
 		await this.getwarning();
-
+		this.stop();
 	}
 
 
@@ -234,129 +221,138 @@ class Iceroad extends utils.Adapter {
 
 			//this.log.debug("ThisUrl: :" + thisUrl);
 			if (location_active[url_read_index] === true) {
-				this.log.debug("location_active[url_read_index]: :" + location_active[url_read_index]);
-				axios({
-					method: 'get',
-					//	baseURL: 'https://data.sensor.community/airrohr/v1/sensor/',
-					url: urls[url_read_index]
-					//responseType: 'json'
-				}).then(
-					async (response) => {
+				this.log.debug("location_active[url_read_index]: " + location_active[url_read_index]);
+				try {
+					const response = await axios({
+						method: 'get',
+						//	baseURL: 'https://data.sensor.community/airrohr/v1/sensor/',
+						url: urls[url_read_index],
+						timeout: 5000
+						//responseType: 'json'
+					});
+					this.log.debug("axios done");
+					res = response.data.result;
 
-						this.log.debug("axios done");
-						res = response.data.result;
+					this.log.info("response.data.result: " + JSON.stringify(response.data.result));
+					this.log.info("response.data: " + JSON.stringify(response.data));
 
-						this.log.info("response.data.result: " + JSON.stringify(response.data.result));
-						this.log.info("response.data: " + JSON.stringify(response.data));
+					const res_data = response.data;
+					const data_message = res_data.message;
+					const data_code = res_data.code;
 
-						const res_data = response.data;
-						const data_message = res_data.message;
-						const data_code = res_data.code;
+					this.log.debug("data_code: " + data_code);
+					this.log.debug("location_active:" + url_read_index + " : " + location_active[url_read_index]);
 
-						this.log.debug("data_code: " + data_code);
-						this.log.debug("location_active:" + url_read_index + " : "  + location_active[url_read_index]);
+					await this.setStateAsync(url_read_index + '.code', {val: data_code, ack: true});
 
-						await this.setState(url_read_index + '.code', {val: data_code,ack: true});
+					if (data_code === 200 && location_active[url_read_index]) {
 
-						if (data_code === 200 && location_active[url_read_index] === true) {
+						data_callsLeft = res_data.callsLeft;
+						data_callsDailyLimit = res_data.callsDailyLimit;
 
-							data_callsLeft = res_data.callsLeft;
-							data_callsDailyLimit = res_data.callsDailyLimit;
+						data_requestdate = res.requestDate;
+						data_forecastid = res.forecastId;
+						data_forecasttext = res.forecastText;
+						data_forecastcity = res.forecastCity;
+						data_forecastdate = res.forecastDate;
+						data_callsResetInSeconds = res_data.callsResetInSeconds;
 
-							data_requestdate = res.requestDate;
-							data_forecastid = res.forecastId;
-							data_forecasttext = res.forecastText;
-							data_forecastcity = res.forecastCity;
-							data_forecastdate = res.forecastDate;
-							data_callsResetInSeconds = res_data.callsResetInSeconds;
+						await this.setStateAsync(url_read_index + '.requestDate', {val: data_requestdate, ack: true});
+						await this.setStateAsync(url_read_index + '.forecastId', {val: data_forecastid, ack: true});
+						await this.setStateAsync(url_read_index + '.forecastText', {val: data_forecasttext, ack: true});
+						await this.setStateAsync(url_read_index + '.forecastCity', {val: data_forecastcity, ack: true});
+						await this.setStateAsync(url_read_index + '.forecastDate', {val: data_forecastdate, ack: true});
 
-							await this.setStateAsync(url_read_index + '.requestDate', {val: data_requestdate,ack: true});
-							await this.setStateAsync(url_read_index + '.forecastId', {val: data_forecastid, ack: true});
-							await this.setStateAsync(url_read_index + '.forecastText', {val: data_forecasttext,ack: true});
-							await this.setStateAsync(url_read_index + '.forecastCity', {val: data_forecastcity,ack: true});
-							await this.setStateAsync(url_read_index + '.forecastDate', {val: data_forecastdate,ack: true});
+						await this.setStateAsync(url_read_index + '.message', {
+							val: JSON.stringify(data_message),
+							ack: true
+						});
+						await this.setStateAsync(url_read_index + '.callsLeft', {val: data_callsLeft, ack: true});
+						await this.setStateAsync(url_read_index + '.callsDailyLimit', {
+							val: data_callsDailyLimit,
+							ack: true
+						});
+						await this.setStateAsync(url_read_index + '.callsResetInSeconds', {
+							val: data_callsResetInSeconds,
+							ack: true
+						});
+						await this.setStateAsync(url_read_index + '.location_name', {
+							val: location_name[url_read_index],
+							ack: true
+						});
 
-							await this.setStateAsync(url_read_index + '.message', {val: JSON.stringify(data_message), ack: true});
-							await this.setStateAsync(url_read_index + '.callsLeft', {val: data_callsLeft, ack: true});
-							await this.setStateAsync(url_read_index + '.callsDailyLimit', {val: data_callsDailyLimit, ack: true});
-							await this.setStateAsync(url_read_index + '.callsResetInSeconds', {val: data_callsResetInSeconds, ack: true});
-							await this.setStateAsync(url_read_index + '.location_name', {val: location_name[url_read_index], ack: true});
+						if (mail_active[url_read_index] && (data_forecasttext === 'Eis!' || test_massage)) {
 
+							this.log.debug(url_read_index + ".send mail");
+							const x = this.textslice(email_subject[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
+							const y = this.textslice(email_message[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
 
-							if (mail_active[url_read_index] == true && data_forecasttext == 'Eis!' || test_massage == true) {
-
-								this.log.debug(url_read_index + ".send mail");
-								const x = this.textslice(email_subject[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
-								const y = this.textslice(email_message[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
-
-								email_subject[url_read_index] = x;
-								email_message[url_read_index] = y;
-								this.sendTo(email_drop[url_read_index], {
-									from: email_from[url_read_index],
-									to: email_to[url_read_index], // comma separated multiple recipients.
-									subject: email_subject[url_read_index],
-									text: email_message[url_read_index]
-								});
-							}
-
-							if (pushover_active[url_read_index] === true && data_forecasttext === 'Eis!' || test_massage === true) {
-								this.log.debug("pushover_message:" + pushover_message[url_read_index]);
-
-								const x = this.textslice(pushover_message[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
-								const y = this.textslice(pushover_title[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
-
-								pushover_message[url_read_index] = x;
-								pushover_title[url_read_index] = y;
-
-								this.sendTo(pushover_drop[url_read_index], {
-									message: pushover_message[url_read_index],
-									title: pushover_title[url_read_index],
-									priority: parseInt(pushover_prio[url_read_index])
-								});
-							}
-
-							if (telegram_active[url_read_index] === true && data_forecasttext === 'Eis!' || test_massage === true) {
-								this.log.debug("telegram_text:" + telegram_text[url_read_index]);
-
-								const x = this.textslice(telegram_text[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
-
-								telegram_text[url_read_index] = x;
-
-								this.sendTo(telegram_drop[url_read_index], {
-									user: telegram_user[url_read_index],
-									text: telegram_text[url_read_index],
-								});
-
-							}
-
-						} else if (data_code === 300) {
-							this.log.error(url_read_index + ".missing latitude and longitude");
-
-							this.errorcases(url_read_index, data_message, location_name[url_read_index]);
-
-						} else if (data_code === 400) {
-
-							this.log.error(url_read_index + ".api-key is missing");
-
-							this.errorcases(url_read_index, data_message, location_name[url_read_index]);
-
-						} else if (data_code === 401) {
-
-							this.log.error(url_read_index + ".invalid api-key");
-
-							this.errorcases(url_read_index, data_message, location_name[url_read_index]);
-
-						} else if (data_code === 402) {
-
-							this.log.error(url_read_index + ".daily call limit reached");
-
-							this.errorcases(url_read_index, data_message, location_name[url_read_index]);
+							email_subject[url_read_index] = x;
+							email_message[url_read_index] = y;
+							this.sendTo(email_drop[url_read_index], {
+								from: email_from[url_read_index],
+								to: email_to[url_read_index], // comma separated multiple recipients.
+								subject: email_subject[url_read_index],
+								text: email_message[url_read_index]
+							});
 						}
 
-					})
-					.catch(function (error) {
-						//	this.log.error("Axios Error: "+ error);
-					});
+						if (pushover_active[url_read_index] && (data_forecasttext === 'Eis!' || test_massage)) {
+							this.log.debug("pushover_message:" + pushover_message[url_read_index]);
+
+							const x = this.textslice(pushover_message[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
+							const y = this.textslice(pushover_title[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
+
+							pushover_message[url_read_index] = x;
+							pushover_title[url_read_index] = y;
+
+							this.sendTo(pushover_drop[url_read_index], {
+								message: pushover_message[url_read_index],
+								title: pushover_title[url_read_index],
+								priority: parseInt(pushover_prio[url_read_index])
+							});
+						}
+
+						if (telegram_active[url_read_index] && (data_forecasttext === 'Eis!' || test_massage)) {
+							this.log.debug("telegram_text:" + telegram_text[url_read_index]);
+
+							const x = this.textslice(telegram_text[url_read_index], data_forecastdate);   // Function is called, return value will end up in x
+
+							telegram_text[url_read_index] = x;
+
+							this.sendTo(telegram_drop[url_read_index], {
+								user: telegram_user[url_read_index],
+								text: telegram_text[url_read_index],
+							});
+
+						}
+
+					} else if (data_code === 300) {
+						this.log.error(url_read_index + ".missing latitude and longitude");
+
+						this.errorcases(url_read_index, data_message, location_name[url_read_index]);
+
+					} else if (data_code === 400) {
+
+						this.log.error(url_read_index + ".api-key is missing");
+
+						this.errorcases(url_read_index, data_message, location_name[url_read_index]);
+
+					} else if (data_code === 401) {
+
+						this.log.error(url_read_index + ".invalid api-key");
+
+						this.errorcases(url_read_index, data_message, location_name[url_read_index]);
+
+					} else if (data_code === 402) {
+
+						this.log.error(url_read_index + ".daily call limit reached");
+
+						this.errorcases(url_read_index, data_message, location_name[url_read_index]);
+					}
+				} catch (e) {
+					this.log.error(url_read_index + ".error:" + e);
+				}
 			}
 		}
 	}
@@ -409,8 +405,8 @@ class Iceroad extends utils.Adapter {
 		let location_active4 = this.config.location_active4;
 		let location_active = [location_active1,location_active2,location_active3,location_active4];
 
-		for (let create_index =0; create_index<5;create_index++){
-			if (location_active[create_index] === true){
+		for (let create_index = 0; create_index < 5; create_index++) {
+			if (location_active[create_index]) {
 				await this.setObjectNotExistsAsync(create_index + '.requestDate', {
 					type: 'state',
 					common: {
@@ -534,19 +530,18 @@ class Iceroad extends utils.Adapter {
 					native: {}
 				});
 
-			}else{
-
-				await  this.delObjectAsync(create_index + '.requestDate');
-				await  this.delObjectAsync(create_index + '.forecastId');
-				await  this.delObjectAsync(create_index + '.forecastText');
-				await  this.delObjectAsync(create_index + '.forecastCity');
-				await  this.delObjectAsync(create_index + '.forecastDate');
-				await  this.delObjectAsync(create_index + '.message');
-				await  this.delObjectAsync(create_index + '.code');
-				await  this.delObjectAsync(create_index + '.callsLeft');
-				await  this.delObjectAsync(create_index + '.callsDailyLimit');
-				await  this.delObjectAsync(create_index + '.callsResetInSeconds');
-				await  this.delObjectAsync(create_index + '.location_name');
+			} else {
+				await this.delObjectAsync(create_index + '.requestDate');
+				await this.delObjectAsync(create_index + '.forecastId');
+				await this.delObjectAsync(create_index + '.forecastText');
+				await this.delObjectAsync(create_index + '.forecastCity');
+				await this.delObjectAsync(create_index + '.forecastDate');
+				await this.delObjectAsync(create_index + '.message');
+				await this.delObjectAsync(create_index + '.code');
+				await this.delObjectAsync(create_index + '.callsLeft');
+				await this.delObjectAsync(create_index + '.callsDailyLimit');
+				await this.delObjectAsync(create_index + '.callsResetInSeconds');
+				await this.delObjectAsync(create_index + '.location_name');
 			}
 		}
 	}
