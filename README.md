@@ -20,12 +20,11 @@ forecast- ice window from your car
 [English Description here](docs/en/iceroad.md)
 
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 0.1.1 (2022-10-01)
 * (Apollon77) Make sure adapter stops when he is done
 
 ### 0.1.0
-* (Patrick Walther) add locations, add pushover/telegram/mail 
+* (Patrick Walther) add locations, add pushover/telegram/mail
 
 ### 0.0.1
 * (Patrick Walther) initial release
