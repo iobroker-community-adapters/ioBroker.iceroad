@@ -1,16 +1,13 @@
 ![Logo](docs/de/img/iceroad.png)
 # ioBroker.iceroad
+![Number of Installations](http://iobroker.live/badges/iceroad-installed.svg)
+![Number of Installations](http://iobroker.live/badges/iceroad-stable.svg)
+[![NPM version](http://img.shields.io/npm/v/iobroker.iceroad.svg)](https://www.npmjs.com/package/iobroker.iceroad)
 
-**If you like it, please consider a donation:**
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYB92ZVNEFNF6&source=url)
+![Test and Release](https://github.com/iobroker-community-adapters/iobroker.iceroad/workflows/Test%20and%20Release/badge.svg)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.iceroad.svg)](https://www.npmjs.com/package/iobroker.iceroad)
 
-
-
-
-bitte die api hier beantragen: https://www.eiswarnung.de/rest-api/
-
-
-# ioBroker.iceroad
+Bitte die api hier beantragen: https://www.eiswarnung.de/rest-api/
 
 Vorhersage zur vereisten Frontscheibe
 [Deutsche Beschreibung hier](docs/de/iceroad.md)
