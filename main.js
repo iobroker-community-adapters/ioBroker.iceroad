@@ -283,6 +283,19 @@ class Iceroad extends utils.Adapter {
 							val: data_forecasttext,
 							ack: true,
 						});
+
+						if (data_forecasttext === 'Eis!') {
+							await this.setStateAsync(url_read_index + '.forecastIsIce', {
+								val: true,
+								ack: true,
+							});
+						} else {
+							await this.setStateAsync(url_read_index + '.forecastIsIce', {
+								val: false,
+								ack: true,
+							});
+						}
+
 						await this.setStateAsync(url_read_index + '.forecastCity', {
 							val: data_forecastcity,
 							ack: true,
@@ -470,6 +483,17 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
+				await this.setObjectNotExistsAsync(create_index + '.forecastIsIce', {
+					type: 'state',
+					common: {
+						name: 'forecastIsIce',
+						type: 'boolean',
+						role: 'value',
+						read: true,
+						write: false,
+					},
+					native: {},
+				});
 				await this.setObjectNotExistsAsync(create_index + '.forecastCity', {
 					type: 'state',
 					common: {
@@ -563,6 +587,7 @@ class Iceroad extends utils.Adapter {
 				await this.delObjectAsync(create_index + '.requestDate');
 				await this.delObjectAsync(create_index + '.forecastId');
 				await this.delObjectAsync(create_index + '.forecastText');
+				await this.delObjectAsync(create_index + '.forecastIsIce');
 				await this.delObjectAsync(create_index + '.forecastCity');
 				await this.delObjectAsync(create_index + '.forecastDate');
 				await this.delObjectAsync(create_index + '.message');
