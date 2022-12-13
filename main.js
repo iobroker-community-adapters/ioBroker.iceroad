@@ -16,6 +16,7 @@ let data_forecasttext = [];
 let data_forecastcity = [];
 let data_forecastdate = [];
 let data_callsResetInSeconds = [];
+let lastStateOfFID = null;
 
 class Iceroad extends utils.Adapter {
 	/**
@@ -46,6 +47,13 @@ class Iceroad extends utils.Adapter {
 		await this.create_delete_state();
 		await this.getwarning();
 		this.stop();
+	}
+
+	async getLastState(uri) {
+		const lastStateOfForecastID = await this.getStateAsync(uri + '.forecastId');
+		if (lastStateOfForecastID) {
+			this.lastStateOfFID = lastStateOfForecastID.val;
+		}
 	}
 
 	async getwarning() {
@@ -231,7 +239,9 @@ class Iceroad extends utils.Adapter {
 		}
 
 		for (let url_read_index = 0; url_read_index < 5; url_read_index++) {
-			//this.log.debug("ThisUrl: :" + thisUrl);
+			// get last State of datapoint to send messages only on state change
+			await this.getLastState(url_read_index);
+
 			if (location_active[url_read_index] && urls[url_read_index]) {
 				this.log.debug('location_active[url_read_index]: ' + location_active[url_read_index]);
 				try {
@@ -326,49 +336,102 @@ class Iceroad extends utils.Adapter {
 							ack: true,
 						});
 
-						if (mail_active[url_read_index] && (data_forecasttext === 'Eis!' || test_massage)) {
-							this.log.debug(url_read_index + '.send mail');
-							/*
-							const x = this.textslice(email_subject[url_read_index], data_forecastdate); // Function is called, return value will end up in x
-							const y = this.textslice(email_message[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+						if (data_forecastid !== this.lastStateOfFID) {
+							switch (data_forecastid) {
+								case 0:
+									if (mail_active[url_read_index]) {
+										this.log.debug(url_read_index + '.send mail');
+										/*
+									const x = this.textslice(email_subject[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+									const y = this.textslice(email_message[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+		
+									email_subject[url_read_index] = x;
+									email_message[url_read_index] = y;
+									*/
+										this.sendTo(email_drop[url_read_index], {
+											from: email_from[url_read_index],
+											to: email_to[url_read_index], // comma separated multiple recipients.
+											subject: email_subject[url_read_index],
+											text: data_forecasttext,
+										});
+									}
 
-							email_subject[url_read_index] = x;
-							email_message[url_read_index] = y;
-							*/
-							this.sendTo(email_drop[url_read_index], {
-								from: email_from[url_read_index],
-								to: email_to[url_read_index], // comma separated multiple recipients.
-								subject: email_subject[url_read_index],
-								text: email_message[url_read_index],
-							});
-						}
+									if (pushover_active[url_read_index]) {
+										this.log.debug('pushover_message:' + data_forecasttext);
+										/*
+									const x = this.textslice(pushover_message[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+									const y = this.textslice(pushover_title[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+									pushover_message[url_read_index] = x;
+									pushover_title[url_read_index] = y;
+		*/
+										this.sendTo(pushover_drop[url_read_index], {
+											message: data_forecasttext,
+											title: pushover_title[url_read_index],
+											priority: parseInt(pushover_prio[url_read_index]),
+										});
+									}
 
-						if (pushover_active[url_read_index] && (data_forecasttext === 'Eis!' || test_massage)) {
-							this.log.debug('pushover_message:' + pushover_message[url_read_index]);
-							/*
-							const x = this.textslice(pushover_message[url_read_index], data_forecastdate); // Function is called, return value will end up in x
-							const y = this.textslice(pushover_title[url_read_index], data_forecastdate); // Function is called, return value will end up in x
-							pushover_message[url_read_index] = x;
-							pushover_title[url_read_index] = y;
-*/
-							this.sendTo(pushover_drop[url_read_index], {
-								message: pushover_message[url_read_index],
-								title: pushover_title[url_read_index],
-								priority: parseInt(pushover_prio[url_read_index]),
-							});
-						}
+									if (telegram_active[url_read_index]) {
+										this.log.debug('telegram_text:' + data_forecasttext);
+										/*
+									const x = this.textslice(telegram_text[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+		*/
+										telegram_text[url_read_index] = x;
 
-						if (telegram_active[url_read_index] && (data_forecasttext === 'Eis!' || test_massage)) {
-							this.log.debug('telegram_text:' + telegram_text[url_read_index]);
-							/*
-							const x = this.textslice(telegram_text[url_read_index], data_forecastdate); // Function is called, return value will end up in x
-*/
-							telegram_text[url_read_index] = x;
+										this.sendTo(telegram_drop[url_read_index], {
+											user: telegram_user[url_read_index],
+											text: data_forecasttext,
+										});
+									}
+									break;
 
-							this.sendTo(telegram_drop[url_read_index], {
-								user: telegram_user[url_read_index],
-								text: telegram_text[url_read_index],
-							});
+								case 1:
+									if (mail_active[url_read_index]) {
+										this.log.debug(url_read_index + '.send mail');
+										/*
+									const x = this.textslice(email_subject[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+									const y = this.textslice(email_message[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+		
+									email_subject[url_read_index] = x;
+									email_message[url_read_index] = y;
+									*/
+										this.sendTo(email_drop[url_read_index], {
+											from: email_from[url_read_index],
+											to: email_to[url_read_index], // comma separated multiple recipients.
+											subject: email_subject[url_read_index],
+											text: data_forecasttext,
+										});
+									}
+
+									if (pushover_active[url_read_index]) {
+										this.log.debug('pushover_message:' + data_forecasttext);
+										/*
+									const x = this.textslice(pushover_message[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+									const y = this.textslice(pushover_title[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+									pushover_message[url_read_index] = x;
+									pushover_title[url_read_index] = y;
+		*/
+										this.sendTo(pushover_drop[url_read_index], {
+											message: data_forecasttext,
+											title: pushover_title[url_read_index],
+											priority: parseInt(pushover_prio[url_read_index]),
+										});
+									}
+
+									if (telegram_active[url_read_index]) {
+										this.log.debug('telegram_text:' + data_forecasttext);
+										/*
+									const x = this.textslice(telegram_text[url_read_index], data_forecastdate); // Function is called, return value will end up in x
+		*/
+										telegram_text[url_read_index] = x;
+
+										this.sendTo(telegram_drop[url_read_index], {
+											user: telegram_user[url_read_index],
+											text: data_forecasttext,
+										});
+									}
+									break;
+							}
 						}
 					} else if (data_code === 300) {
 						this.log.error(url_read_index + '.missing latitude and longitude');
