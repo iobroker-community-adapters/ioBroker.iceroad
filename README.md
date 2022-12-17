@@ -27,7 +27,7 @@ forecast- ice window from your car
 
 ### **WORK IN PROGRESS**
 
--   (ciddi89) added handling for wrong location data (komma to fullstop)
+-   (ciddi89) added handling for wrong location data (comma to fullstop)
 
 ### 1.0.0 (2022-12-17)
 
