@@ -24,8 +24,7 @@ forecast- ice window from your car
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.0.0 (2022-12-17)
 
 -   (ciddi89) fixed issue messages wasn't sent
 -   (ciddi89) increased timeout
