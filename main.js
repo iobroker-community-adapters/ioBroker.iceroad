@@ -62,9 +62,9 @@ class Iceroad extends utils.Adapter {
 	 *  get usersettings from table
 	 */
 	async getTableData() {
-		const tableLocationData = this.config.tableLocation;
+		const locationData = this.config.tableLocation;
 
-		for (const i in tableLocationData) {
+		for (const i in locationData) {
 			this.locationData.push({
 				id: i,
 				active: locationData[i].locationActiveCheckbox,
