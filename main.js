@@ -4,11 +4,7 @@
 'use strict';
 
 const utils = require('@iobroker/adapter-core');
-const { resolve } = require('path');
 const axios = require('axios').default;
-
-const urls = [];
-//const thisUrl ='';
 
 //define data
 let res = [];
@@ -120,7 +116,7 @@ class Iceroad extends utils.Adapter {
 
 		for (const i in this.locationData) {
 			if (this.locationData[i].active) {
-				let uri = this.locationData[i].id;
+				const uri = this.locationData[i].id;
 				const url = this.locationData[i].url;
 				// get last State of datapoint to send messages only on state change
 				await this.getLastState(uri);
@@ -211,7 +207,7 @@ class Iceroad extends utils.Adapter {
 							=            send notification		          =
 							=============================================*/
 							const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
-							let lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
+							const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
 
 							if (this.locationData[i].sendNotifiy) {
 								if (data_forecastid !== this.lastStateOfFID) {
@@ -421,14 +417,14 @@ class Iceroad extends utils.Adapter {
 	} // <-- End of sendNotification function
 
 	async errorcases(c, f, e) {
-		var d = new Date();
-		var dd = d.getUTCDate();
-		var mm = d.getUTCMonth() + 1;
-		var yy = d.getUTCFullYear();
-		var h = d.getHours();
-		var m = d.getMinutes();
-		var uhrzeit = (h <= 9 ? '0' + h : h) + ':' + (m <= 9 ? '0' + m : m);
-		var datum = yy + '-' + (mm <= 9 ? '0' + mm : mm) + '-' + (dd <= 9 ? '0' + dd : dd);
+		const d = new Date();
+		const dd = d.getUTCDate();
+		const mm = d.getUTCMonth() + 1;
+		const yy = d.getUTCFullYear();
+		const h = d.getHours();
+		const m = d.getMinutes();
+		const uhrzeit = (h <= 9 ? '0' + h : h) + ':' + (m <= 9 ? '0' + m : m);
+		const datum = yy + '-' + (mm <= 9 ? '0' + mm : mm) + '-' + (dd <= 9 ? '0' + dd : dd);
 
 		await this.setStateAsync(c + '.message', {
 			val: JSON.stringify(f),
