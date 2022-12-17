@@ -65,15 +65,17 @@ class Iceroad extends utils.Adapter {
 		const locationData = this.config.tableLocation;
 
 		for (const i in locationData) {
+			const locationLat = locationData[i].latitude.replace(/,/g, '.');
+			const locationLng = locationData[i].longitude.replace(/,/g, '.');
 			this.locationData.push({
 				id: i,
 				active: locationData[i].locationActiveCheckbox,
-				lat: locationData[i].latitude,
-				lng: locationData[i].longitude,
+				lat: locationLat,
+				lng: locationLng,
 				name: locationData[i].locationname,
 				apiKey: locationData[i].apiKey,
 				sendNotifiy: locationData[i].sendmessageCheckbox,
-				url: `${this.apiUrl}?key=${locationData[i].apikey}&lat=${locationData[i].latitude}&lng=${locationData[i].longitude}`,
+				url: `${this.apiUrl}?key=${locationData[i].apikey}&lat=${locationLat}&lng=${locationLng}`,
 			});
 		}
 	}
