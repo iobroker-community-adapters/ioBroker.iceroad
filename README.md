@@ -24,6 +24,11 @@ forecast- ice window from your car
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+
+-   (ciddi89) added handling for wrong location data (komma to fullstop)
+
 ### 1.0.0 (2022-12-17)
 
 -   (ciddi89) fixed issue messages wasn't sent
