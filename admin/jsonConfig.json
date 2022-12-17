@@ -1,0 +1,395 @@
+{
+	"i18n": true,
+	"type": "tabs",
+	"items": {
+		"_options": {
+			"type": "panel",
+			"label": "Options",
+			"items": {
+				"_headerDevices": {
+					"type": "header",
+					"text": "Iceroad - Warning for frozen windows",
+					"size": 2
+				},
+				"_textDays": {
+					"type": "staticText",
+					"text": "Here you can add your location. For an api key you have to be registered on https://eiswarnung.de.",
+					"style": {
+						"fontSize": 16,
+						"marginTop": 20
+					}
+				},
+				"tableLocation": {
+					"type": "table",
+					"label": "Add your Location",
+					"nodelete": true,
+					"sm": 12,
+					"md": 12,
+					"lg": 12,
+					"items": [
+						{
+							"type": "checkbox",
+							"title": "Active",
+							"attr": "locationActiveCheckbox",
+							"width": "10%",
+							"default": true
+						},
+						{
+							"type": "text",
+							"title": "Longitude",
+							"attr": "longitude",
+							"width": "20%"
+						},
+						{
+							"type": "text",
+							"title": "Latitude",
+							"attr": "latitude",
+							"width": "20%"
+						},
+						{
+							"type": "text",
+							"title": "Locationname (Optional)",
+							"attr": "locationname",
+							"width": "20%"
+						},
+						{
+							"type": "text",
+							"title": "Api-Key",
+							"attr": "apikey",
+							"width": "30%"
+						},
+						{
+							"type": "checkbox",
+							"title": "Send message",
+							"attr": "sendmessageCheckbox",
+							"width": "10%",
+							"default": "true"
+						}
+					]
+				}
+			}
+		},
+		"_notifications": {
+			"type": "panel",
+			"label": "Notifications",
+			"items": {
+				"_headerCommon": {
+					"type": "header",
+					"text": "Common Notification Settings",
+					"size": 2
+				},
+				"checkReminderMessage": {
+					"type": "checkbox",
+					"sm": 12,
+					"md": 6,
+					"lg": 3,
+					"label": "Reminder message",
+					"help": "If 'Ice / 'Maybe Ice' state has been pending for X hours, send a reminder"
+				},
+				"reminderHours": {
+					"type": "number",
+					"label": "Choose the hours:",
+					"min": "1",
+					"hidden": "!data.checkReminderMessage"
+				},
+				"_headerMSGservice": {
+					"newLine": true,
+					"type": "header",
+					"text": "Notification Service",
+					"size": 2,
+					"hidden": "",
+					"hideOnlyControl": false
+				},
+				"msgServiceText": {
+					"type": "staticText",
+					"text": "Here you can choose your notification service, you can use more than one service.",
+					"style": {
+						"fontSize": 16,
+						"marginTop": 20
+					},
+					"hidden": "",
+					"hideOnlyControl": false
+				},
+				"msgService": {
+					"newLine": true,
+					"type": "select",
+					"help": "Choose your notification services",
+					"options": [
+						{ "label": "Please choose", "value": "none" },
+						{ "label": "Pushover", "value": "pushover" },
+						{ "label": "Telegram", "value": "telegram" },
+						{ "label": "Whatsapp", "value": "whatsapp" },
+						{ "label": "E-Mail", "value": "email" },
+						{ "label": "Jarvis", "value": "jarvis" },
+						{ "label": "Lovelace", "value": "lovelace" },
+						{ "label": "Synochat", "value": "synochat" }
+					],
+					"default": "none",
+					"hidden": "",
+					"hideOnlyControl": false
+				},
+				"_headerPushover": {
+					"newLine": true,
+					"type": "header",
+					"text": "Pushover",
+					"size": 2,
+					"hidden": "data.msgService !== 'pushover'",
+					"hideOnlyControl": false
+				},
+				"instancePushover": {
+					"newLine": true,
+					"type": "instance",
+					"adapter": "pushover",
+					"all": false,
+					"allowDeactivate": true,
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Pushover Instance",
+					"help": "Please choose the pushover instance",
+					"hidden": "data.msgService !== 'pushover'",
+					"hideOnlyControl": false
+				},
+				"devicePushover": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Device-ID (optional)",
+					"help": "Choose your device",
+					"hidden": "data.msgService !== 'pushover'",
+					"hideOnlyControl": false
+				},
+				"prioPushover": {
+					"type": "select",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"help": "Choose the priority",
+					"options": [
+						{ "label": "Normal", "value": "" },
+						{ "label": "High Priority", "value": 1 },
+						{ "label": "Silent", "value": -1 },
+						{ "label": "With confirmation", "value": 2 }
+					],
+					"hidden": "data.msgService !== 'pushover'",
+					"hideOnlyControl": false
+				},
+				"titlePushover": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Title (optional)",
+					"help": "Choose your title for Pushmessage",
+					"hidden": "data.msgService !== 'pushover'",
+					"hideOnlyControl": false
+				},
+				"headerTelegram": {
+					"newLine": "true",
+					"type": "header",
+					"text": "Telegram",
+					"size": 2,
+					"hidden": "data.msgService !== 'telegram'",
+					"hideOnlyControl": false
+				},
+				"instanceTelegram": {
+					"newLine": true,
+					"type": "instance",
+					"adapter": "telegram",
+					"all": false,
+					"allowDeactivate": true,
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Telegram Instance",
+					"help": "Please choose the telegram instance",
+					"hidden": "data.msgService !== 'telegram'",
+					"hideOnlyControl": false
+				},
+				"deviceTelegram": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Device-ID (optional)",
+					"help": "Choose your device",
+					"hidden": "data.msgService !== 'telegram'",
+					"hideOnlyControl": false
+				},
+				"chatIdTelegram": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Chat-ID (optional)",
+					"help": "Choose your Chat-ID",
+					"hidden": "data.msgService !== 'telegram'",
+					"hideOnlyControl": false
+				},
+				"headerWhatsapp": {
+					"newLine": "true",
+					"type": "header",
+					"text": "Whatsapp",
+					"size": 2,
+					"hidden": "data.msgService !== 'whatsapp'",
+					"hideOnlyControl": false
+				},
+				"instanceWhatsapp": {
+					"newLine": true,
+					"type": "instance",
+					"adapter": "whatsapp-cmb",
+					"all": false,
+					"allowDeactivate": true,
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Whatsapp Instance",
+					"help": "Please choose the Whatsapp instance",
+					"hidden": "data.msgService !== 'whatsapp'",
+					"hideOnlyControl": false
+				},
+				"phoneWhatapp": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Recipient (optional)",
+					"help": "Choose your recipient",
+					"hidden": "data.msgService !== 'whatsapp'",
+					"hideOnlyControl": false
+				},
+				"_headerEmail": {
+					"newLine": true,
+					"type": "header",
+					"text": "Email",
+					"size": 2,
+					"hidden": "data.msgService !== 'email'",
+					"hideOnlyControl": false
+				},
+				"instanceEmail": {
+					"newLine": true,
+					"type": "instance",
+					"adapter": "email",
+					"all": false,
+					"allowDeactivate": true,
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Email Instance",
+					"help": "Please choose the email instance",
+					"hidden": "data.msgService !== 'email'",
+					"hideOnlyControl": false
+				},
+				"sendToEmail": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Send to (optional)",
+					"help": "Choose your email address",
+					"hidden": "data.msgService !== 'email'",
+					"hideOnlyControl": false
+				},
+				"subjectEmail": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Subject (optional)",
+					"help": "Choose your subject for the Email",
+					"hidden": "data.msgService !== 'email'",
+					"hideOnlyControl": false
+				},
+				"headerJarvis": {
+					"newLine": "true",
+					"type": "header",
+					"text": "Jarvis Notification",
+					"size": 2,
+					"hidden": "data.msgService !== 'jarvis'",
+					"hideOnlyControl": false
+				},
+				"instanceJarvis": {
+					"newLine": true,
+					"type": "instance",
+					"adapter": "jarvis",
+					"allowDeactivate": true,
+					"all": false,
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Jarvis Instance",
+					"help": "Please choose the jarvis instance",
+					"hidden": "data.msgService !== 'jarvis'",
+					"hideOnlyControl": false
+				},
+				"titleJarvis": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Title (optional)",
+					"help": "Choose your title for Pushmessage",
+					"hidden": "data.msgService !== 'jarvis'",
+					"hideOnlyControl": false
+				},
+				"headerLovelace": {
+					"newLine": "true",
+					"type": "header",
+					"text": "Lovelace Notification",
+					"size": 2,
+					"hidden": "data.msgService !== 'lovelace'",
+					"hideOnlyControl": false
+				},
+				"instanceLovelace": {
+					"newLine": true,
+					"type": "instance",
+					"adapter": "lovelace",
+					"allowDeactivate": true,
+					"all": false,
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Lovelace Instance",
+					"help": "Please choose the lovelace instance",
+					"hidden": "data.msgService !== 'lovelace'",
+					"hideOnlyControl": false
+				},
+				"titleLovelace": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Title (optional)",
+					"help": "Choose your title for Pushmessage",
+					"hidden": "data.msgService !== 'lovelace'",
+					"hideOnlyControl": false
+				},
+				"instanceSynochat": {
+					"newLine": true,
+					"type": "instance",
+					"adapter": "synochat",
+					"allowDeactivate": true,
+					"all": false,
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Synochat Instance",
+					"help": "Please choose the Synochat instance",
+					"hidden": "data.msgService !== 'synochat'",
+					"hideOnlyControl": false
+				},
+				"channelSynochat": {
+					"type": "text",
+					"sm": 12,
+					"md": 4,
+					"lg": 4,
+					"label": "Channel",
+					"help": "Enter the channelname for Synochat",
+					"hidden": "data.msgService !== 'synochat'",
+					"hideOnlyControl": false
+				}
+			}
+		}
+	}
+}

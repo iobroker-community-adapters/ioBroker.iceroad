@@ -20,10 +20,17 @@ forecast- ice window from your car
 
 ## Changelog
 
+<!--
+    Placeholder for the next version (at the beginning of the line):
+    ### **WORK IN PROGRESS**
+-->
+
 ### **WORK IN PROGRESS**
 
 -   (ciddi89) fixed issue messages wasn't sent
 -   (ciddi89) increased timeout
+-   (ciddi89) BREAKING CHANGE -> rebuild adapter complete. Please save your data and delete the instance before update
+-   (ciddi89) drop support for admin 5
 
 ### 0.1.1 (2022-10-01)
 
