@@ -36,14 +36,14 @@
 						},
 						{
 							"type": "text",
-							"title": "Longitude",
-							"attr": "longitude",
+							"title": "Latitude",
+							"attr": "latitude",
 							"width": "20%"
 						},
 						{
 							"type": "text",
-							"title": "Latitude",
-							"attr": "latitude",
+							"title": "Longitude",
+							"attr": "longitude",
 							"width": "20%"
 						},
 						{
