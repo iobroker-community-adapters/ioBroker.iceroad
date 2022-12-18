@@ -222,7 +222,6 @@ class Iceroad extends utils.Adapter {
 											break;
 									}
 								} else if (this.config.checkReminderMessage) {
-									await this.setStateAsync('info.reminder', { val: false, ack: true });
 									const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
 									const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
 
@@ -458,6 +457,35 @@ class Iceroad extends utils.Adapter {
 
 	async create_delete_state() {
 		const locationData = this.config.tableLocation;
+
+		if (this.config.checkReminderMessage) {
+			await this.setObjectNotExistsAsync('info.reminder', {
+				type: 'state',
+				common: {
+					name: {
+						en: 'Aux data point',
+						de: 'Hilfsdatenpunkt',
+						ru: 'Aux точка данных',
+						pt: 'Ponto de dados Aux',
+						nl: 'Aux data punt',
+						fr: 'Point de données auxiliaire',
+						it: 'Aux data point',
+						es: 'Punto de datos Aux',
+						pl: 'Aux data point',
+						uk: 'Точка даних Aux',
+						'zh-cn': '评价数据点',
+					},
+					type: 'boolean',
+					role: 'indicator',
+					read: true,
+					write: false,
+					def: false,
+				},
+				native: {},
+			});
+		} else {
+			await this.delObjectAsync('info.reminder');
+		}
 
 		for (let create_index = 0; create_index < 15; create_index++) {
 			if (locationData[create_index]) {

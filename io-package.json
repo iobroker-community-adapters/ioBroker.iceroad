@@ -141,30 +141,5 @@
 		"channelSynochat": ""
 	},
 	"objects": [],
-	"instanceObjects": [
-		{
-			"_id": "info.reminder",
-			"type": "state",
-			"common": {
-				"name": {
-					"en": "Aux data point",
-					"de": "Hilfsdatenpunkt",
-					"ru": "Aux точка данных",
-					"pt": "Ponto de dados Aux",
-					"nl": "Aux data punt",
-					"fr": "Point de données auxiliaire",
-					"it": "Aux data point",
-					"es": "Punto de datos Aux",
-					"pl": "Aux data point",
-					"uk": "Точка даних Aux",
-					"zh-cn": "评价数据点"
-				},
-				"type": "boolean",
-				"role": "indicator",
-				"read": true,
-				"write": false
-			},
-			"native": {}
-		}
-	]
+	"instanceObjects": []
 }
