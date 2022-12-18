@@ -133,7 +133,6 @@ class Iceroad extends utils.Adapter {
 						const data_code = res_data.code;
 
 						this.log.debug('data_code: ' + data_code);
-						// this.log.debug('location_active:' + uri + ' : ' + location_active[uri]);
 
 						/*=============================================
 						=          		 fill datapoints	          =
@@ -209,6 +208,10 @@ class Iceroad extends utils.Adapter {
 							const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
 							const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
 
+							//aux datapoint help point for reminder function
+							const lastStateChangeofAux = await this.getStateAsync('info.reminder');
+							const lastContactOfAux = Math.round((new Date() - new Date(lastStateChangeofAux.lc)) / 1000 / 60 / 60);
+
 							if (this.locationData[i].sendNotifiy) {
 								if (data_forecastid !== this.lastStateOfFID) {
 									switch (data_forecastid) {
@@ -224,15 +227,18 @@ class Iceroad extends utils.Adapter {
 											await this.sendNotification(`Neuer Eisstatus für ${user_locationName}: ${data_forecasttext}`);
 											break;
 									}
-								} else if (this.config.checkReminderMessage && lastContact > this.config.reminderHours) {
-									switch (data_forecastid) {
-										case 1: // ICE
-											await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
-											break;
+								} else if (this.config.checkReminderMessage) {
+									if (lastContact > this.config.reminderHours && !lastContactOfAux && lastContactOfAux > this.config.reminderHours) {
+										switch (data_forecastid) {
+											case 1: // ICE
+												await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+												break;
 
-										case 2: // Maybe ICE
-											await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
-											break;
+											case 2: // Maybe ICE
+												await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+												break;
+										}
+										await this.resetAux();
 									}
 								}
 							}
@@ -416,6 +422,11 @@ class Iceroad extends utils.Adapter {
 		}
 	} // <-- End of sendNotification function
 
+	async resetAux() {
+		await this.setStateAsync('info.reminder', { val: true, ack: true });
+		await this.setStateAsync('info.reminder', { val: false, ack: true });
+	}
+
 	async errorcases(c, f, e) {
 		const d = new Date();
 		const dd = d.getUTCDate();
@@ -450,7 +461,7 @@ class Iceroad extends utils.Adapter {
 	async create_delete_state() {
 		const locationData = this.config.tableLocation;
 
-		for (let create_index = 0; create_index < 10; create_index++) {
+		for (let create_index = 0; create_index < 15; create_index++) {
 			if (locationData[create_index]) {
 				await this.setObjectNotExistsAsync(create_index + '.requestDate', {
 					type: 'state',

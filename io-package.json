@@ -1,149 +1,170 @@
 {
-  "common": {
-    "name": "iceroad",
-    "version": "1.0.0",
-    "news": {
-      "1.0.0": {
-        "en": "fixed issue messages wasn't sent\nincreased timeout\nBREAKING CHANGE -> rebuild adapter complete. Please save your data and delete the instance before update\ndrop support for admin 5",
-        "de": "feste meldungen wurden nicht gesendet\nmehr zeitaufwand\nBREAKING CHANGE -> Rebuild Adapter komplett. Bitte speichern Sie Ihre Daten und löschen Sie die Instanz vor dem Update\nunterstützung für admin 5",
-        "ru": "фиксированные сообщения о проблемах не были отправлены\nувеличено timeout\nЗАВТРАК ИЗМЕНЕНИЯ -> перестроить адаптер завершен. Пожалуйста, сохраните свои данные и удалите экземпляр перед обновлением\nподдержка капли для admin 5",
-        "pt": "mensagens de emissão fixas não foram enviadas\naumento do tempo de\nBREAKING CHANGE -> adaptador de reconstrução completo. Por favor, salve seus dados e exclua a instância antes de atualizar\nsuporte drop para admin 5",
-        "nl": "er werden geen berichten gestuurd\nverhoogde time-out\nHerbouwde adapter compleet. Bewaar alsjeblieft je gegevens en verwijder het instituut voor update\nadmin 5",
-        "fr": "des messages fixes n'ont pas été envoyés\naugmentation du temps\nCHANGE BREAKING - Rénover adaptateur complet. Veuillez sauvegarder vos données et supprimer l'instance avant de mettre à jour\ndrop support pour admin 5",
-        "it": "messaggi di emissione fissi non sono stati inviati\naumento del timeout\nBREAKING CHANGE -> Ricostruire l'adattatore completo. Si prega di salvare i dati e cancellare l'istanza prima dell'aggiornamento\nsupporto drop per admin 5",
-        "es": "mensajes de números fijos no fueron enviados\naumento del tiempo\nBREAKING CHANGE - Reconstruyendo adaptador completo. Por favor, guardar sus datos y eliminar la instancia antes de actualizar\nsoporte de gota para admin 5",
-        "pl": "nie została wysłana wiadomość o stałym numerze\nzwiększone czaso\nBREAKING CHANGE -> (ang.). Oszczędne dane i usuwają przykład przed aktualizacją\nadmin 5",
-        "uk": "виправлено повідомлення про проблему не відправлено\nзбільшений час\nBREAKING CHANGE -> перебудувати адаптер завершено. Будь ласка, зберігайте дані та видаліть екземпляр до оновлення\nпідтримка крапель для адміністратора 5",
-        "zh-cn": "定期发出问题讯息\n增加时间\nBAKREANGE - 重建适应者。 请挽救你的数据,在更新前删去这一例子。\nb. 减少对目标5的支助"
-      },
-      "0.1.1": {
-        "en": "Make sure adapter stops when he is done",
-        "de": "Stellen Sie sicher, dass Adapter stoppt, wenn er fertig ist",
-        "ru": "Убедитесь, что адаптер останавливается, когда он делается",
-        "pt": "Certifique-se de que o adaptador pára quando ele é feito",
-        "nl": "Zorg dat adapter stopt als hij klaar is",
-        "fr": "Assurez-vous que l'adaptateur s'arrête quand il est fait",
-        "it": "Assicurarsi che l'adattatore si fermi quando è fatto",
-        "es": "Asegúrate de que el adaptador se detenga cuando haya terminado",
-        "pl": "Umożliwia przyspieszenie, gdy jest on robiony",
-        "zh-cn": "当他做时,确保适应者停止行动",
-        "uk": "Переконайтеся, що адаптер зупинився, коли він закінчить"
-      },
-      "0.1.0": {
-        "en": "add locations, add pushover/telegram/mail",
-        "de": "Standorte hinzufügen, Pushover/Telegramm/Mail hinzufügen",
-        "ru": "добавить локации, добавить pushover/telegram/mail",
-        "pt": "adicionar locais, adicionar pushover/telegram/mail",
-        "nl": "voeg locaties toe, voeg pushover/telegram/mail toe",
-        "fr": "ajouter des emplacements, ajouter pushover/télégramme/courrier",
-        "it": "aggiungi posizioni, aggiungi pushover/telegramma/mail",
-        "es": "agregar ubicaciones, agregar pushover/telegram/mail",
-        "pl": "dodaj lokalizacje, dodaj pushover/telegram/mail",
-        "zh-cn": "添加位置，添加pushover/电报/邮件",
-        "uk": "додати місця, додати pushover/telegram/mail"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "zh-cn": "首次出版",
-        "uk": "початковий випуск"
-      }
-    },
-    "title": "forecast iceroad",
-    "titleLang": {
-      "en": "forecast iceroad",
-      "de": "Vorhersage Eisstraße",
-      "ru": "прогноз",
-      "pt": "previsão de estrada de gelo",
-      "nl": "voorspelling ijsweg",
-      "fr": "route de glace de prévision",
-      "it": "previsioni iceroad",
-      "es": "pronostico carretera helada",
-      "pl": "prognoza lodowa droga",
-      "zh-cn": "预测冰路",
-      "uk": "прогноз льодовикової дороги"
-    },
-    "desc": {
-      "en": "forecast iceroad",
-      "de": "Vorhersage Eisstraße",
-      "ru": "прогноз",
-      "pt": "previsão de estrada de gelo",
-      "nl": "voorspelling ijsweg",
-      "fr": "route de glace de prévision",
-      "it": "previsioni iceroad",
-      "es": "pronostico carretera helada",
-      "pl": "prognoza lodowa droga",
-      "zh-cn": "预测冰路",
-      "uk": "прогноз льодовикової дороги"
-    },
-    "authors": [
-      "Patrick-Walther <walther-patrick@gmx.net>"
-    ],
-    "keywords": [
-      "weather forecast iceroad"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "iceroad.png",
-    "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.iceroad/main/admin/iceroad.png",
-    "readme": "https://github.com/iobroker-community-adapters/ioBroker.iceroad/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "schedule",
-    "schedule": "0 * * * *",
-    "allowInit": true,
-    "type": "weather",
-    "compact": true,
-    "connectionType": "cloud",
-    "dataSource": "poll",
-    "materialize": true,
-    "messagebox": true,
-    "subscribe": "messagebox",
-    "tier": 3,
-    "adminUI": {
-      "config": "json"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=2.0.0"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=6.0.0"
-      }
-    ]
-  },
-  "native": {
-    "checkReminderMessage": true,
-    "reminderHours": 6,
-    "instancePushover": "",
-    "titlePushover": "",
-    "devicePushover": "",
-    "prioPushover": "",
-    "instanceEmail": "",
-    "subjectEmail": "",
-    "sendToEmail": "",
-    "instanceTelegram": "",
-    "deviceTelegram": "",
-    "chatIdTelegram": "",
-    "instanceWhatsapp": "",
-    "phoneWhatsapp": "",
-    "instanceJarvis": "",
-    "titleJarvis": "Ice-Road",
-    "instanceLovelace": "",
-    "titleLovelace": "Ice-Road",
-    "instanceSynochat": "",
-    "channelSynochat": ""
-  },
-  "objects": [],
-  "instanceObjects": []
+	"common": {
+		"name": "iceroad",
+		"version": "1.0.0",
+		"news": {
+			"1.0.0": {
+				"en": "fixed issue messages wasn't sent\nincreased timeout\nBREAKING CHANGE -> rebuild adapter complete. Please save your data and delete the instance before update\ndrop support for admin 5",
+				"de": "feste meldungen wurden nicht gesendet\nmehr zeitaufwand\nBREAKING CHANGE -> Rebuild Adapter komplett. Bitte speichern Sie Ihre Daten und löschen Sie die Instanz vor dem Update\nunterstützung für admin 5",
+				"ru": "фиксированные сообщения о проблемах не были отправлены\nувеличено timeout\nЗАВТРАК ИЗМЕНЕНИЯ -> перестроить адаптер завершен. Пожалуйста, сохраните свои данные и удалите экземпляр перед обновлением\nподдержка капли для admin 5",
+				"pt": "mensagens de emissão fixas não foram enviadas\naumento do tempo de\nBREAKING CHANGE -> adaptador de reconstrução completo. Por favor, salve seus dados e exclua a instância antes de atualizar\nsuporte drop para admin 5",
+				"nl": "er werden geen berichten gestuurd\nverhoogde time-out\nHerbouwde adapter compleet. Bewaar alsjeblieft je gegevens en verwijder het instituut voor update\nadmin 5",
+				"fr": "des messages fixes n'ont pas été envoyés\naugmentation du temps\nCHANGE BREAKING - Rénover adaptateur complet. Veuillez sauvegarder vos données et supprimer l'instance avant de mettre à jour\ndrop support pour admin 5",
+				"it": "messaggi di emissione fissi non sono stati inviati\naumento del timeout\nBREAKING CHANGE -> Ricostruire l'adattatore completo. Si prega di salvare i dati e cancellare l'istanza prima dell'aggiornamento\nsupporto drop per admin 5",
+				"es": "mensajes de números fijos no fueron enviados\naumento del tiempo\nBREAKING CHANGE - Reconstruyendo adaptador completo. Por favor, guardar sus datos y eliminar la instancia antes de actualizar\nsoporte de gota para admin 5",
+				"pl": "nie została wysłana wiadomość o stałym numerze\nzwiększone czaso\nBREAKING CHANGE -> (ang.). Oszczędne dane i usuwają przykład przed aktualizacją\nadmin 5",
+				"uk": "виправлено повідомлення про проблему не відправлено\nзбільшений час\nBREAKING CHANGE -> перебудувати адаптер завершено. Будь ласка, зберігайте дані та видаліть екземпляр до оновлення\nпідтримка крапель для адміністратора 5",
+				"zh-cn": "定期发出问题讯息\n增加时间\nBAKREANGE - 重建适应者。 请挽救你的数据,在更新前删去这一例子。\nb. 减少对目标5的支助"
+			},
+			"0.1.1": {
+				"en": "Make sure adapter stops when he is done",
+				"de": "Stellen Sie sicher, dass Adapter stoppt, wenn er fertig ist",
+				"ru": "Убедитесь, что адаптер останавливается, когда он делается",
+				"pt": "Certifique-se de que o adaptador pára quando ele é feito",
+				"nl": "Zorg dat adapter stopt als hij klaar is",
+				"fr": "Assurez-vous que l'adaptateur s'arrête quand il est fait",
+				"it": "Assicurarsi che l'adattatore si fermi quando è fatto",
+				"es": "Asegúrate de que el adaptador se detenga cuando haya terminado",
+				"pl": "Umożliwia przyspieszenie, gdy jest on robiony",
+				"zh-cn": "当他做时,确保适应者停止行动",
+				"uk": "Переконайтеся, що адаптер зупинився, коли він закінчить"
+			},
+			"0.1.0": {
+				"en": "add locations, add pushover/telegram/mail",
+				"de": "Standorte hinzufügen, Pushover/Telegramm/Mail hinzufügen",
+				"ru": "добавить локации, добавить pushover/telegram/mail",
+				"pt": "adicionar locais, adicionar pushover/telegram/mail",
+				"nl": "voeg locaties toe, voeg pushover/telegram/mail toe",
+				"fr": "ajouter des emplacements, ajouter pushover/télégramme/courrier",
+				"it": "aggiungi posizioni, aggiungi pushover/telegramma/mail",
+				"es": "agregar ubicaciones, agregar pushover/telegram/mail",
+				"pl": "dodaj lokalizacje, dodaj pushover/telegram/mail",
+				"zh-cn": "添加位置，添加pushover/电报/邮件",
+				"uk": "додати місця, додати pushover/telegram/mail"
+			},
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版",
+				"uk": "початковий випуск"
+			}
+		},
+		"title": "forecast iceroad",
+		"titleLang": {
+			"en": "forecast iceroad",
+			"de": "Vorhersage Eisstraße",
+			"ru": "прогноз",
+			"pt": "previsão de estrada de gelo",
+			"nl": "voorspelling ijsweg",
+			"fr": "route de glace de prévision",
+			"it": "previsioni iceroad",
+			"es": "pronostico carretera helada",
+			"pl": "prognoza lodowa droga",
+			"zh-cn": "预测冰路",
+			"uk": "прогноз льодовикової дороги"
+		},
+		"desc": {
+			"en": "forecast iceroad",
+			"de": "Vorhersage Eisstraße",
+			"ru": "прогноз",
+			"pt": "previsão de estrada de gelo",
+			"nl": "voorspelling ijsweg",
+			"fr": "route de glace de prévision",
+			"it": "previsioni iceroad",
+			"es": "pronostico carretera helada",
+			"pl": "prognoza lodowa droga",
+			"zh-cn": "预测冰路",
+			"uk": "прогноз льодовикової дороги"
+		},
+		"authors": ["Patrick-Walther <walther-patrick@gmx.net>"],
+		"keywords": ["weather forecast iceroad"],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "main.js",
+		"icon": "iceroad.png",
+		"enabled": false,
+		"extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.iceroad/main/admin/iceroad.png",
+		"readme": "https://github.com/iobroker-community-adapters/ioBroker.iceroad/blob/main/README.md",
+		"loglevel": "info",
+		"mode": "schedule",
+		"schedule": "0 * * * *",
+		"allowInit": true,
+		"type": "weather",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"materialize": true,
+		"messagebox": true,
+		"subscribe": "messagebox",
+		"tier": 3,
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=2.0.0"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=6.0.0"
+			}
+		]
+	},
+	"native": {
+		"checkReminderMessage": true,
+		"reminderHours": 6,
+		"instancePushover": "",
+		"titlePushover": "",
+		"devicePushover": "",
+		"prioPushover": "",
+		"instanceEmail": "",
+		"subjectEmail": "",
+		"sendToEmail": "",
+		"instanceTelegram": "",
+		"deviceTelegram": "",
+		"chatIdTelegram": "",
+		"instanceWhatsapp": "",
+		"phoneWhatsapp": "",
+		"instanceJarvis": "",
+		"titleJarvis": "Ice-Road",
+		"instanceLovelace": "",
+		"titleLovelace": "Ice-Road",
+		"instanceSynochat": "",
+		"channelSynochat": ""
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+			"_id": "info.reminder",
+			"type": "state",
+			"common": {
+				"name": {
+					"en": "Aux data point",
+					"de": "Hilfsdatenpunkt",
+					"ru": "Aux точка данных",
+					"pt": "Ponto de dados Aux",
+					"nl": "Aux data punt",
+					"fr": "Point de données auxiliaire",
+					"it": "Aux data point",
+					"es": "Punto de datos Aux",
+					"pl": "Aux data point",
+					"uk": "Точка даних Aux",
+					"zh-cn": "评价数据点"
+				},
+				"type": "boolean",
+				"role": "indicator",
+				"read": true,
+				"write": false
+			},
+			"native": {}
+		}
+	]
 }
