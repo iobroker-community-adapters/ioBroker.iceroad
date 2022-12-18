@@ -205,12 +205,6 @@ class Iceroad extends utils.Adapter {
 							/*=============================================
 							=            send notification		          =
 							=============================================*/
-							const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
-							const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
-
-							//aux datapoint help point for reminder function
-							const lastStateChangeofAux = await this.getStateAsync('info.reminder');
-							const lastContactOfAux = Math.round((new Date() - new Date(lastStateChangeofAux.lc)) / 1000 / 60 / 60);
 
 							if (this.locationData[i].sendNotifiy) {
 								if (data_forecastid !== this.lastStateOfFID) {
@@ -228,7 +222,16 @@ class Iceroad extends utils.Adapter {
 											break;
 									}
 								} else if (this.config.checkReminderMessage) {
+									await this.setStateAsync('info.reminder', { val: false, ack: true });
+									const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
+									const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
+
+									//aux datapoint help point for reminder function
+									const lastStateChangeofAux = await this.getStateAsync('info.reminder');
+									const lastContactOfAux = Math.round((new Date() - new Date(lastStateChangeofAux.lc)) / 1000 / 60 / 60);
+
 									if (lastContact > this.config.reminderHours && !lastContactOfAux && lastContactOfAux > this.config.reminderHours) {
+										await this.setStateAsync('info.reminder', { val: true, ack: true });
 										switch (data_forecastid) {
 											case 1: // ICE
 												await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
@@ -238,7 +241,7 @@ class Iceroad extends utils.Adapter {
 												await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
 												break;
 										}
-										await this.resetAux();
+										await this.setStateAsync('info.reminder', { val: false, ack: true });
 									}
 								}
 							}
@@ -421,11 +424,6 @@ class Iceroad extends utils.Adapter {
 			this.log.error('[sendNotification Synochat]', error);
 		}
 	} // <-- End of sendNotification function
-
-	async resetAux() {
-		await this.setStateAsync('info.reminder', { val: true, ack: true });
-		await this.setStateAsync('info.reminder', { val: false, ack: true });
-	}
 
 	async errorcases(c, f, e) {
 		const d = new Date();
