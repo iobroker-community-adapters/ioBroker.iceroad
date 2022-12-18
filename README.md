@@ -37,8 +37,7 @@ If the adapter displays the status "Ice" or "Maybe ice", it is possible to be no
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.1.0 (2022-12-18)
 
 -   (ciddi89) added handling for wrong location data (comma to fullstop)
 -   (ciddi89) added functionality for reminder notification
