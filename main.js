@@ -6,7 +6,7 @@
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios').default;
 
-//define data
+//data
 let res = [];
 let data_callsLeft = [];
 let data_callsDailyLimit = [];
