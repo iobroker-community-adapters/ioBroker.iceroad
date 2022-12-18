@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "iceroad",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "news": {
+      "1.1.1": {
+        "en": "changed order in table of longitude and latitude",
+        "de": "geänderte reihenfolge in der tabelle der länge und breite",
+        "ru": "изменен заказ в таблице долготы и широты",
+        "pt": "ordem alterada na tabela de longitude e latitude",
+        "nl": "veranderingsorde in tafel van langdurigheid en breedtegraad",
+        "fr": "changement d'ordre dans le tableau de longitude et de latitude",
+        "it": "cambiato ordine in tavolo di longitudine e latitudine",
+        "es": "orden cambiado en tabla de longitud y latitud",
+        "pl": "zmieniono porządek w stół długiej i szerokości geograficznej",
+        "uk": "змінений порядок в таблиці довготи і широтості",
+        "zh-cn": "长度和纬度变动"
+      },
       "1.1.0": {
         "en": "added handling for wrong location data (comma to fullstop)\nadded functionality for reminder notification\nupdated readme",
         "de": "zusätzliches handling für falsche standortdaten (comma to fullstop)\nzusätzliche funktionalität für erinnerungsmeldung\naktualisierte version",
