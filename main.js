@@ -88,7 +88,7 @@ class Iceroad extends utils.Adapter {
 			method: 'get',
 			baseURL: this.apiUrl,
 			url: requestUrl,
-			timeout: 3000,
+			timeout: 5000,
 			responseType: 'json',
 		})
 			.then((response) => {
@@ -127,139 +127,143 @@ class Iceroad extends utils.Adapter {
 				if (this.locationData[i].active && url) {
 					try {
 						const response = await this.fetchData(url);
-						res = response.result;
-						const res_data = response;
-						const data_message = res_data.message;
-						const data_code = res_data.code;
+						if (response.result !== undefined) {
+							res = response.result;
+							const res_data = response;
+							const data_message = res_data.message;
+							const data_code = res_data.code;
 
-						this.log.debug('data_code: ' + data_code);
-
-						/*=============================================
-						=          		 fill datapoints	          =
-						=============================================*/
-						await this.setStateAsync(uri + '.code', {
-							val: data_code,
-							ack: true,
-						});
-
-						if (data_code === 200 && this.locationData[i].active) {
-							data_callsLeft = res_data.callsLeft;
-							data_callsDailyLimit = res_data.callsDailyLimit;
-
-							data_requestdate = res.requestDate;
-							data_forecastid = res.forecastId;
-							data_forecasttext = res.forecastText;
-							data_forecastcity = res.forecastCity;
-							data_forecastdate = res.forecastDate;
-							data_callsResetInSeconds = res_data.callsResetInSeconds;
-
-							if (this.locationData[i].name !== undefined) {
-								user_locationName = this.locationData[i].name;
-							} else {
-								user_locationName = res.forecastCity;
-							}
-
-							await this.setStateAsync(uri + '.requestDate', {
-								val: data_requestdate,
-								ack: true,
-							});
-							await this.setStateAsync(uri + '.forecastId', {
-								val: data_forecastid,
-								ack: true,
-							});
-							await this.setStateAsync(uri + '.forecastText', {
-								val: data_forecasttext,
-								ack: true,
-							});
-
-							await this.setStateAsync(uri + '.forecastCity', {
-								val: data_forecastcity,
-								ack: true,
-							});
-							await this.setStateAsync(uri + '.forecastDate', {
-								val: data_forecastdate,
-								ack: true,
-							});
-
-							await this.setStateAsync(uri + '.message', {
-								val: JSON.stringify(data_message),
-								ack: true,
-							});
-							await this.setStateAsync(uri + '.callsLeft', {
-								val: data_callsLeft,
-								ack: true,
-							});
-							await this.setStateAsync(uri + '.callsDailyLimit', {
-								val: data_callsDailyLimit,
-								ack: true,
-							});
-							await this.setStateAsync(uri + '.callsResetInSeconds', {
-								val: data_callsResetInSeconds,
-								ack: true,
-							});
-							await this.setStateAsync(uri + '.location_name', {
-								val: user_locationName,
-								ack: true,
-							});
+							this.log.debug('data_code: ' + data_code);
 
 							/*=============================================
+						=          		 fill datapoints	          =
+						=============================================*/
+							await this.setStateAsync(uri + '.code', {
+								val: data_code,
+								ack: true,
+							});
+
+							if (data_code === 200 && this.locationData[i].active) {
+								data_callsLeft = res_data.callsLeft;
+								data_callsDailyLimit = res_data.callsDailyLimit;
+
+								data_requestdate = res.requestDate;
+								data_forecastid = res.forecastId;
+								data_forecasttext = res.forecastText;
+								data_forecastcity = res.forecastCity;
+								data_forecastdate = res.forecastDate;
+								data_callsResetInSeconds = res_data.callsResetInSeconds;
+
+								if (this.locationData[i].name !== undefined) {
+									user_locationName = this.locationData[i].name;
+								} else {
+									user_locationName = res.forecastCity;
+								}
+
+								await this.setStateAsync(uri + '.requestDate', {
+									val: data_requestdate,
+									ack: true,
+								});
+								await this.setStateAsync(uri + '.forecastId', {
+									val: data_forecastid,
+									ack: true,
+								});
+								await this.setStateAsync(uri + '.forecastText', {
+									val: data_forecasttext,
+									ack: true,
+								});
+
+								await this.setStateAsync(uri + '.forecastCity', {
+									val: data_forecastcity,
+									ack: true,
+								});
+								await this.setStateAsync(uri + '.forecastDate', {
+									val: data_forecastdate,
+									ack: true,
+								});
+
+								await this.setStateAsync(uri + '.message', {
+									val: JSON.stringify(data_message),
+									ack: true,
+								});
+								await this.setStateAsync(uri + '.callsLeft', {
+									val: data_callsLeft,
+									ack: true,
+								});
+								await this.setStateAsync(uri + '.callsDailyLimit', {
+									val: data_callsDailyLimit,
+									ack: true,
+								});
+								await this.setStateAsync(uri + '.callsResetInSeconds', {
+									val: data_callsResetInSeconds,
+									ack: true,
+								});
+								await this.setStateAsync(uri + '.location_name', {
+									val: user_locationName,
+									ack: true,
+								});
+
+								/*=============================================
 							=            send notification		          =
 							=============================================*/
 
-							if (this.locationData[i].sendNotifiy) {
-								if (data_forecastid !== this.lastStateOfFID) {
-									switch (data_forecastid) {
-										case 0: // No ICE
-											await this.sendNotification(`Neuer Eisstatus für ${user_locationName}: ${data_forecasttext}`);
-											break;
-
-										case 1: // ICE
-											await this.sendNotification(`Neuer Eisstatus für ${user_locationName}: ${data_forecasttext}`);
-											break;
-
-										case 2: // Maybe ICE
-											await this.sendNotification(`Neuer Eisstatus für ${user_locationName}: ${data_forecasttext}`);
-											break;
-									}
-								} else if (this.config.checkReminderMessage) {
-									const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
-									const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
-
-									//aux datapoint help point for reminder function
-									const lastStateChangeofAux = await this.getStateAsync('info.reminder');
-									const lastContactOfAux = Math.round((new Date() - new Date(lastStateChangeofAux.lc)) / 1000 / 60 / 60);
-
-									if (lastContact > this.config.reminderHours && !lastContactOfAux && lastContactOfAux > this.config.reminderHours) {
-										await this.setStateAsync('info.reminder', { val: true, ack: true });
+								if (this.locationData[i].sendNotifiy) {
+									if (data_forecastid !== this.lastStateOfFID) {
 										switch (data_forecastid) {
+											case 0: // No ICE
+												await this.sendNotification(`Neuer Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+												break;
+
 											case 1: // ICE
-												await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+												await this.sendNotification(`Neuer Eisstatus für ${user_locationName}: ${data_forecasttext}`);
 												break;
 
 											case 2: // Maybe ICE
-												await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+												await this.sendNotification(`Neuer Eisstatus für ${user_locationName}: ${data_forecasttext}`);
 												break;
 										}
-										await this.setStateAsync('info.reminder', { val: false, ack: true });
+									} else if (this.config.checkReminderMessage) {
+										const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
+										const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
+
+										//aux datapoint help point for reminder function
+										const lastStateChangeofAux = await this.getStateAsync('info.reminder');
+										const lastContactOfAux = Math.round((new Date() - new Date(lastStateChangeofAux.lc)) / 1000 / 60 / 60);
+
+										if (lastContact > this.config.reminderHours && !lastContactOfAux && lastContactOfAux > this.config.reminderHours) {
+											await this.setStateAsync('info.reminder', { val: true, ack: true });
+											switch (data_forecastid) {
+												case 1: // ICE
+													await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+													break;
+
+												case 2: // Maybe ICE
+													await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+													break;
+											}
+											await this.setStateAsync('info.reminder', { val: false, ack: true });
+										}
 									}
 								}
+							} else if (data_code === 300) {
+								this.log.error(uri + '.missing latitude and longitude');
+
+								this.errorcases(uri, data_message, user_locationName);
+							} else if (data_code === 400) {
+								this.log.error(uri + '.api-key is missing');
+
+								this.errorcases(uri, data_message, user_locationName);
+							} else if (data_code === 401) {
+								this.log.error(uri + '.invalid api-key');
+
+								this.errorcases(uri, data_message, user_locationName);
+							} else if (data_code === 402) {
+								this.log.error(uri + '.daily call limit reached');
+
+								this.errorcases(uri, data_message, user_locationName);
 							}
-						} else if (data_code === 300) {
-							this.log.error(uri + '.missing latitude and longitude');
-
-							this.errorcases(uri, data_message, user_locationName);
-						} else if (data_code === 400) {
-							this.log.error(uri + '.api-key is missing');
-
-							this.errorcases(uri, data_message, user_locationName);
-						} else if (data_code === 401) {
-							this.log.error(uri + '.invalid api-key');
-
-							this.errorcases(uri, data_message, user_locationName);
-						} else if (data_code === 402) {
-							this.log.error(uri + '.daily call limit reached');
-
-							this.errorcases(uri, data_message, user_locationName);
+						} else {
+							this.log.info(`Can not get data. Try to fetch data at next run`);
 						}
 					} catch (e) {
 						this.log.error(uri + '.error:' + e);
