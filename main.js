@@ -127,7 +127,7 @@ class Iceroad extends utils.Adapter {
 				if (this.locationData[i].active && url) {
 					try {
 						const response = await this.fetchData(url);
-						if (response.result !== undefined) {
+						if (response !== undefined) {
 							res = response.result;
 							const res_data = response;
 							const data_message = res_data.message;
