@@ -37,8 +37,7 @@ If the adapter displays the status "Ice" or "Maybe ice", it is possible to be no
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.1.2 (2022-12-23)
 
 -   (ciddi89) handling if no data was received added
 

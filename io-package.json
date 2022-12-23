@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "iceroad",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "news": {
+      "1.1.2": {
+        "en": "handling if no data was received added",
+        "de": "handhabung, wenn keine daten hinzugefügt wurden",
+        "ru": "обработка, если данные не были получены",
+        "pt": "manipulação se nenhum dado foi adicionado",
+        "nl": "als er geen gegevens zijn toegevoegd",
+        "fr": "manipulation si aucune donnée n ' a été reçue",
+        "it": "gestione se non sono stati ricevuti ulteriori dati",
+        "es": "manejo si no se recibieron datos añadidos",
+        "pl": "jeśli nie dodano żadnych danych, nie dodano żadnych danych",
+        "uk": "не додано дані",
+        "zh-cn": "如果没有收到任何数据,则处理。"
+      },
       "1.1.1": {
         "en": "changed order in table of longitude and latitude",
         "de": "geänderte reihenfolge in der tabelle der länge und breite",
