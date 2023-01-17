@@ -230,18 +230,20 @@ class Iceroad extends utils.Adapter {
 										const lastStateChangeofAux = await this.getStateAsync('info.reminder');
 										const lastContactOfAux = Math.round((new Date() - new Date(lastStateChangeofAux.lc)) / 1000 / 60 / 60);
 
-										if (lastContact > this.config.reminderHours && !lastContactOfAux && lastContactOfAux > this.config.reminderHours) {
-											await this.setStateAsync('info.reminder', { val: true, ack: true });
-											switch (data_forecastid) {
-												case 1: // ICE
-													await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
-													break;
+										if (lastContact > this.config.reminderHours) {
+											if (lastStateChangeofAux.val === false && lastContactOfAux >= this.config.reminderHours) {
+												await this.setStateAsync('info.reminder', { val: true, ack: true });
+												switch (data_forecastid) {
+													case 1: // ICE
+														await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+														break;
 
-												case 2: // Maybe ICE
-													await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
-													break;
+													case 2: // Maybe ICE
+														await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+														break;
+												}
+												await this.setStateAsync('info.reminder', { val: false, ack: true });
 											}
-											await this.setStateAsync('info.reminder', { val: false, ack: true });
 										}
 									}
 								}
