@@ -38,6 +38,10 @@ If the adapter displays the status "Ice" or "Maybe ice", it is possible to be no
     ### **WORK IN PROGRESS**
 -->
 
+### **WORK IN PROGRESS**
+
+-   (ciddi89) fixed issues with reminder
+
 ### 1.1.2 (2022-12-23)
 
 -   (ciddi89) handling if no data was received added
