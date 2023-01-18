@@ -77,7 +77,7 @@ class Iceroad extends utils.Adapter {
 	}
 
 	async getLastState(uri) {
-		const lastStateOfForecastID = await this.getStateAsync(uri + '.forecastId');
+		const lastStateOfForecastID = await this.getStateAsync(`${uri}.forecastId`);
 		if (lastStateOfForecastID) {
 			this.lastStateOfFID = lastStateOfForecastID.val;
 		}
@@ -133,12 +133,12 @@ class Iceroad extends utils.Adapter {
 							const data_message = res_data.message;
 							const data_code = res_data.code;
 
-							this.log.debug('data_code: ' + data_code);
+							this.log.debug(`data_code: ${data_code}`);
 
 							/*=============================================
 						=          		 fill datapoints	          =
 						=============================================*/
-							await this.setStateAsync(uri + '.code', {
+							await this.setStateAsync(`${uri}.code`, {
 								val: data_code,
 								ack: true,
 							});
@@ -160,45 +160,45 @@ class Iceroad extends utils.Adapter {
 									user_locationName = res.forecastCity;
 								}
 
-								await this.setStateAsync(uri + '.requestDate', {
+								await this.setStateAsync(`${uri}.requestDate`, {
 									val: data_requestdate,
 									ack: true,
 								});
-								await this.setStateAsync(uri + '.forecastId', {
+								await this.setStateAsync(`${uri}.forecastId`, {
 									val: data_forecastid,
 									ack: true,
 								});
-								await this.setStateAsync(uri + '.forecastText', {
+								await this.setStateAsync(`${uri}.forecastText`, {
 									val: data_forecasttext,
 									ack: true,
 								});
 
-								await this.setStateAsync(uri + '.forecastCity', {
+								await this.setStateAsync(`${uri}.forecastCity`, {
 									val: data_forecastcity,
 									ack: true,
 								});
-								await this.setStateAsync(uri + '.forecastDate', {
+								await this.setStateAsync(`${uri}.forecastDate`, {
 									val: data_forecastdate,
 									ack: true,
 								});
 
-								await this.setStateAsync(uri + '.message', {
+								await this.setStateAsync(`${uri}.message`, {
 									val: JSON.stringify(data_message),
 									ack: true,
 								});
-								await this.setStateAsync(uri + '.callsLeft', {
+								await this.setStateAsync(`${uri}.callsLeft`, {
 									val: data_callsLeft,
 									ack: true,
 								});
-								await this.setStateAsync(uri + '.callsDailyLimit', {
+								await this.setStateAsync(`${uri}.callsDailyLimit`, {
 									val: data_callsDailyLimit,
 									ack: true,
 								});
-								await this.setStateAsync(uri + '.callsResetInSeconds', {
+								await this.setStateAsync(`${uri}.callsResetInSeconds`, {
 									val: data_callsResetInSeconds,
 									ack: true,
 								});
-								await this.setStateAsync(uri + '.location_name', {
+								await this.setStateAsync(`${uri}.location_name`, {
 									val: user_locationName,
 									ack: true,
 								});
@@ -223,7 +223,7 @@ class Iceroad extends utils.Adapter {
 												break;
 										}
 									} else if (this.config.checkReminderMessage) {
-										const lastStateChangeofID = await this.getStateAsync(uri + '.forecastId');
+										const lastStateChangeofID = await this.getStateAsync(`${uri}.forecastId`);
 										const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
 
 										//aux datapoint help point for reminder function
@@ -248,19 +248,19 @@ class Iceroad extends utils.Adapter {
 									}
 								}
 							} else if (data_code === 300) {
-								this.log.error(uri + '.missing latitude and longitude');
+								this.log.error(`${uri}.missing latitude and longitude`);
 
 								this.errorcases(uri, data_message, user_locationName);
 							} else if (data_code === 400) {
-								this.log.error(uri + '.api-key is missing');
+								this.log.error(`${uri}.api-key is missing`);
 
 								this.errorcases(uri, data_message, user_locationName);
 							} else if (data_code === 401) {
-								this.log.error(uri + '.invalid api-key');
+								this.log.error(`${uri}.invalid api-key`);
 
 								this.errorcases(uri, data_message, user_locationName);
 							} else if (data_code === 402) {
-								this.log.error(uri + '.daily call limit reached');
+								this.log.error(`${uri}.daily call limit reached`);
 
 								this.errorcases(uri, data_message, user_locationName);
 							}
@@ -268,7 +268,7 @@ class Iceroad extends utils.Adapter {
 							this.log.info(`Can not get data. Try to fetch data at next run`);
 						}
 					} catch (e) {
-						this.log.error(uri + '.error:' + e);
+						this.log.error(`${uri}.error: ${e}`);
 					}
 				}
 			}
@@ -293,7 +293,7 @@ class Iceroad extends utils.Adapter {
 		try {
 			if (this.config.instancePushover) {
 				//first check if instance is living
-				const pushoverAliveState = await this.getInitValue('system.adapter.' + this.config.instancePushover + '.alive');
+				const pushoverAliveState = await this.getInitValue(`system.adapter.${this.config.instancePushover}.alive`);
 
 				if (!pushoverAliveState) {
 					this.log.warn('Pushover instance is not running. Message could not be sent. Please check your instance configuration.');
@@ -314,7 +314,7 @@ class Iceroad extends utils.Adapter {
 		try {
 			if (this.config.instanceTelegram) {
 				//first check if instance is living
-				const telegramAliveState = await this.getInitValue('system.adapter.' + this.config.instanceTelegram + '.alive');
+				const telegramAliveState = await this.getInitValue(`system.adapter.${this.config.instanceTelegram}.alive`);
 
 				if (!telegramAliveState) {
 					this.log.warn('Telegram instance is not running. Message could not be sent. Please check your instance configuration.');
@@ -334,7 +334,7 @@ class Iceroad extends utils.Adapter {
 		try {
 			if (this.config.instanceWhatsapp) {
 				//first check if instance is living
-				const whatsappAliveState = await this.getInitValue('system.adapter.' + this.config.instanceWhatsapp + '.alive');
+				const whatsappAliveState = await this.getInitValue(`system.adapter.${this.config.instanceWhatsapp}.alive`);
 
 				if (!whatsappAliveState) {
 					this.log.warn('Whatsapp instance is not running. Message could not be sent. Please check your instance configuration.');
@@ -353,7 +353,7 @@ class Iceroad extends utils.Adapter {
 		try {
 			if (this.config.instanceEmail) {
 				//first check if instance is living
-				const eMailAliveState = await this.getInitValue('system.adapter.' + this.config.instanceEmail + '.alive');
+				const eMailAliveState = await this.getInitValue(`system.adapter.${this.config.instanceEmail}.alive`);
 
 				if (!eMailAliveState) {
 					this.log.warn('eMail instance is not running. Message could not be sent. Please check your instance configuration.');
@@ -373,7 +373,7 @@ class Iceroad extends utils.Adapter {
 		try {
 			if (this.config.instanceJarvis) {
 				//first check if instance is living
-				const jarvisAliveState = await this.getInitValue('system.adapter.' + this.config.instanceJarvis + '.alive');
+				const jarvisAliveState = await this.getInitValue(`system.adapter.${this.config.instanceJarvis}.alive`);
 
 				if (!jarvisAliveState) {
 					this.log.warn('Jarvis instance is not running. Message could not be sent. Please check your instance configuration.');
@@ -393,7 +393,7 @@ class Iceroad extends utils.Adapter {
 		try {
 			if (this.config.instanceLovelace) {
 				//first check if instance is living
-				const lovelaceAliveState = await this.getInitValue('system.adapter.' + this.config.instanceLovelace + '.alive');
+				const lovelaceAliveState = await this.getInitValue(`system.adapter.${this.config.instanceLovelace}.alive`);
 
 				if (!lovelaceAliveState) {
 					this.log.warn('Lovelace instance is not running. Message could not be sent. Please check your instance configuration.');
@@ -413,7 +413,7 @@ class Iceroad extends utils.Adapter {
 		try {
 			if (this.config.instanceSynochat) {
 				//first check if instance is living
-				const synochatAliveState = await this.getInitValue('system.adapter.' + this.config.instanceSynochat + '.alive');
+				const synochatAliveState = await this.getInitValue(`system.adapter.${this.config.instanceSynochat}.alive`);
 
 				if (!synochatAliveState) {
 					this.log.warn('Synochat instance is not running. Message could not be sent. Please check your instance configuration.');
@@ -440,25 +440,25 @@ class Iceroad extends utils.Adapter {
 		const uhrzeit = (h <= 9 ? '0' + h : h) + ':' + (m <= 9 ? '0' + m : m);
 		const datum = yy + '-' + (mm <= 9 ? '0' + mm : mm) + '-' + (dd <= 9 ? '0' + dd : dd);
 
-		await this.setStateAsync(c + '.message', {
+		await this.setStateAsync(`${c}.message`, {
 			val: JSON.stringify(f),
 			ack: true,
 		});
-		await this.setStateAsync(c + '.requestDate', {
+		await this.setStateAsync(`${c}.requestDate`, {
 			val: datum + ' ' + uhrzeit,
 			ack: true,
 		});
-		await this.setStateAsync(c + '.forecastId', { val: 0, ack: true });
-		await this.setStateAsync(c + '.forecastText', { val: '0', ack: true });
-		await this.setStateAsync(c + '.forecastCity', { val: '0', ack: true });
-		await this.setStateAsync(c + '.forecastDate', {
+		await this.setStateAsync(`${c}.forecastId`, { val: 0, ack: true });
+		await this.setStateAsync(`${c}.forecastText`, { val: '0', ack: true });
+		await this.setStateAsync(`${c}.forecastCity`, { val: '0', ack: true });
+		await this.setStateAsync(`${c}.forecastDate`, {
 			val: datum + ' ' + uhrzeit,
 			ack: true,
 		});
-		await this.setStateAsync(c + '.callsLeft', { val: 0, ack: true });
-		await this.setStateAsync(c + '.callsDailyLimit', { val: 0, ack: true });
-		await this.setStateAsync(c + '.callsResetInSeconds', { val: 0, ack: true });
-		await this.setStateAsync(c + '.location_name', { val: e, ack: true });
+		await this.setStateAsync(`${c}.callsLeft`, { val: 0, ack: true });
+		await this.setStateAsync(`${c}.callsDailyLimit`, { val: 0, ack: true });
+		await this.setStateAsync(`${c}.callsResetInSeconds`, { val: 0, ack: true });
+		await this.setStateAsync(`${c}.location_name`, { val: e, ack: true });
 	}
 
 	async create_delete_state() {
