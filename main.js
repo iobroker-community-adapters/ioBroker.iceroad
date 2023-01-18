@@ -227,12 +227,12 @@ class Iceroad extends utils.Adapter {
 										const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
 
 										//aux datapoint help point for reminder function
-										const lastStateChangeofAux = await this.getStateAsync('info.reminder');
-										const lastContactOfAux = Math.round((new Date() - new Date(lastStateChangeofAux.lc)) / 1000 / 60 / 60);
+										const lastStateOfHelper = await this.getStateAsync(`${uri}.info.reminderHelper`);
+										const lastStateChangeofHelper = Math.round((new Date() - new Date(lastStateOfHelper.lc)) / 1000 / 60 / 60);
 
 										if (lastContact > this.config.reminderHours) {
-											if (lastStateChangeofAux.val === false && lastContactOfAux >= this.config.reminderHours) {
-												await this.setStateAsync('info.reminder', { val: true, ack: true });
+											if (lastStateOfHelper.val === false && lastStateChangeofHelper >= this.config.reminderHours) {
+												await this.setStateAsync(`${uri}.info.reminderHelper`, { val: true, ack: true });
 												switch (data_forecastid) {
 													case 1: // ICE
 														await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
@@ -242,7 +242,7 @@ class Iceroad extends utils.Adapter {
 														await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
 														break;
 												}
-												await this.setStateAsync('info.reminder', { val: false, ack: true });
+												await this.setStateAsync(`${uri}.info.reminderHelper`, { val: false, ack: true });
 											}
 										}
 									}
@@ -464,38 +464,9 @@ class Iceroad extends utils.Adapter {
 	async create_delete_state() {
 		const locationData = this.config.tableLocation;
 
-		if (this.config.checkReminderMessage) {
-			await this.setObjectNotExistsAsync('info.reminder', {
-				type: 'state',
-				common: {
-					name: {
-						en: 'Aux data point',
-						de: 'Hilfsdatenpunkt',
-						ru: 'Aux точка данных',
-						pt: 'Ponto de dados Aux',
-						nl: 'Aux data punt',
-						fr: 'Point de données auxiliaire',
-						it: 'Aux data point',
-						es: 'Punto de datos Aux',
-						pl: 'Aux data point',
-						uk: 'Точка даних Aux',
-						'zh-cn': '评价数据点',
-					},
-					type: 'boolean',
-					role: 'indicator',
-					read: true,
-					write: false,
-					def: false,
-				},
-				native: {},
-			});
-		} else {
-			await this.delObjectAsync('info.reminder');
-		}
-
 		for (let create_index = 0; create_index < 15; create_index++) {
 			if (locationData[create_index]) {
-				await this.setObjectNotExistsAsync(create_index + '.requestDate', {
+				await this.setObjectNotExistsAsync(`${create_index}.requestDate`, {
 					type: 'state',
 					common: {
 						name: 'requestDate',
@@ -506,7 +477,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.forecastId', {
+				await this.setObjectNotExistsAsync(`${create_index}.forecastId`, {
 					type: 'state',
 					common: {
 						name: 'forecastId',
@@ -522,7 +493,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.forecastText', {
+				await this.setObjectNotExistsAsync(`${create_index}.forecastText`, {
 					type: 'state',
 					common: {
 						name: 'forecastText',
@@ -533,7 +504,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.forecastCity', {
+				await this.setObjectNotExistsAsync(`${create_index}.forecastCity`, {
 					type: 'state',
 					common: {
 						name: 'forecastCity',
@@ -544,7 +515,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.forecastDate', {
+				await this.setObjectNotExistsAsync(`${create_index}.forecastDate`, {
 					type: 'state',
 					common: {
 						name: 'forecastDate',
@@ -555,7 +526,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.message', {
+				await this.setObjectNotExistsAsync(`${create_index}.message`, {
 					type: 'state',
 					common: {
 						name: 'message',
@@ -566,7 +537,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.code', {
+				await this.setObjectNotExistsAsync(`${create_index}.code`, {
 					type: 'state',
 					common: {
 						name: 'code',
@@ -577,7 +548,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.callsLeft', {
+				await this.setObjectNotExistsAsync(`${create_index}.callsLeft`, {
 					type: 'state',
 					common: {
 						name: 'callsLeft',
@@ -588,7 +559,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.callsDailyLimit', {
+				await this.setObjectNotExistsAsync(`${create_index}.callsDailyLimit`, {
 					type: 'state',
 					common: {
 						name: 'callsDailyLimit',
@@ -599,7 +570,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.callsResetInSeconds', {
+				await this.setObjectNotExistsAsync(`${create_index}.callsResetInSeconds`, {
 					type: 'state',
 					common: {
 						name: 'callsResetInSeconds',
@@ -611,7 +582,7 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
-				await this.setObjectNotExistsAsync(create_index + '.location_name', {
+				await this.setObjectNotExistsAsync(`${create_index}.location_name`, {
 					type: 'state',
 					common: {
 						name: 'location_name',
@@ -622,18 +593,48 @@ class Iceroad extends utils.Adapter {
 					},
 					native: {},
 				});
+				//Create helper for reminder message
+				if (this.config.checkReminderMessage) {
+					await this.setObjectNotExistsAsync(`${create_index}.info.reminderHelper`, {
+						type: 'state',
+						common: {
+							name: {
+								en: 'Helper for reminder message',
+								de: 'Helfer für Erinnerungsbotschaft',
+								ru: 'Помощник для напоминания сообщения',
+								pt: 'Ajudante para mensagem de lembrete',
+								nl: 'Hulp voor herinneringen',
+								fr: 'Aide pour le message de rappel',
+								it: 'Aiutante per messaggio di promemoria',
+								es: 'Helper for reminder message',
+								pl: 'Pomocnik przypomnień',
+								uk: 'Допомога для нагадування повідомлення',
+								'zh-cn': '帮助提醒讯息',
+							},
+							type: 'boolean',
+							role: 'indicator',
+							read: true,
+							write: false,
+							def: false,
+						},
+						native: {},
+					});
+				} else {
+					await this.delObjectAsync(`${create_index}.info.reminderHelper`);
+				}
 			} else {
-				await this.delObjectAsync(create_index + '.requestDate');
-				await this.delObjectAsync(create_index + '.forecastId');
-				await this.delObjectAsync(create_index + '.forecastText');
-				await this.delObjectAsync(create_index + '.forecastCity');
-				await this.delObjectAsync(create_index + '.forecastDate');
-				await this.delObjectAsync(create_index + '.message');
-				await this.delObjectAsync(create_index + '.code');
-				await this.delObjectAsync(create_index + '.callsLeft');
-				await this.delObjectAsync(create_index + '.callsDailyLimit');
-				await this.delObjectAsync(create_index + '.callsResetInSeconds');
-				await this.delObjectAsync(create_index + '.location_name');
+				await this.delObjectAsync(`${create_index}.requestDate`);
+				await this.delObjectAsync(`${create_index}.forecastId`);
+				await this.delObjectAsync(`${create_index}.forecastText`);
+				await this.delObjectAsync(`${create_index}.forecastCity`);
+				await this.delObjectAsync(`${create_index}.forecastDate`);
+				await this.delObjectAsync(`${create_index}.message`);
+				await this.delObjectAsync(`${create_index}.code`);
+				await this.delObjectAsync(`${create_index}.callsLeft`);
+				await this.delObjectAsync(`${create_index}.callsDailyLimit`);
+				await this.delObjectAsync(`${create_index}.callsResetInSeconds`);
+				await this.delObjectAsync(`${create_index}.location_name`);
+				await this.delObjectAsync(`${create_index}.info.reminderHelper`);
 			}
 		}
 	}
