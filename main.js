@@ -466,6 +466,15 @@ class Iceroad extends utils.Adapter {
 
 		for (let create_index = 0; create_index < 15; create_index++) {
 			if (locationData[create_index]) {
+				await this.setObjectNotExistsAsync(`${create_index}`, {
+					type: 'channel',
+					common: {
+						name: locationData[create_index].locationname,
+						read: true,
+						write: false,
+					},
+					native: {},
+				});
 				await this.setObjectNotExistsAsync(`${create_index}.requestDate`, {
 					type: 'state',
 					common: {
@@ -623,6 +632,7 @@ class Iceroad extends utils.Adapter {
 					await this.delObjectAsync(`${create_index}.info.reminderHelper`);
 				}
 			} else {
+				await this.delObjectAsync(`${create_index}`);
 				await this.delObjectAsync(`${create_index}.requestDate`);
 				await this.delObjectAsync(`${create_index}.forecastId`);
 				await this.delObjectAsync(`${create_index}.forecastText`);
