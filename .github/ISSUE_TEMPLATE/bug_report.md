@@ -2,8 +2,9 @@
 name: Bug report
 about: Something is not working as it should
 title: ''
-labels: ''
-assignees: ''
+labels: bug
+assignees: ciddi89
+
 ---
 
 **Describe the bug**  
