@@ -7,6 +7,7 @@
 [![NPM version](http://img.shields.io/npm/v/iobroker.iceroad.svg)](https://www.npmjs.com/package/iobroker.iceroad)
 
 ![Test and Release](https://github.com/iobroker-community-adapters/iobroker.iceroad/workflows/Test%20and%20Release/badge.svg)
+[![CodeQL](https://github.com/iobroker-community-adapters/ioBroker.iceroad/actions/workflows/codeql.yml/badge.svg)](https://github.com/iobroker-community-adapters/ioBroker.iceroad/actions/workflows/codeql.yml)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.iceroad.svg)](https://www.npmjs.com/package/iobroker.iceroad)
 
 ## Documentation
