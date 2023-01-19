@@ -224,22 +224,21 @@ class Iceroad extends utils.Adapter {
 										}
 									} else if (this.config.checkReminderMessage) {
 										const lastStateChangeofID = await this.getStateAsync(`${uri}.forecastId`);
-										const lastContact = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
+										const timeLastStateChangeOfID = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
 
-										//aux datapoint help point for reminder function
+										//helper datapoint for reminder function
 										const lastStateOfHelper = await this.getStateAsync(`${uri}.info.reminderHelper`);
 										const lastStateChangeofHelper = Math.round((new Date() - new Date(lastStateOfHelper.lc)) / 1000 / 60 / 60);
-
-										if (lastContact > this.config.reminderHours) {
+										if (timeLastStateChangeOfID >= this.config.reminderHours) {
 											if (lastStateOfHelper.val === false && lastStateChangeofHelper >= this.config.reminderHours) {
 												await this.setStateAsync(`${uri}.info.reminderHelper`, { val: true, ack: true });
 												switch (data_forecastid) {
 													case 1: // ICE
-														await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+														await this.sendNotification(`Eisstatus für ${user_locationName} weiterhin: ${data_forecasttext}`);
 														break;
 
 													case 2: // Maybe ICE
-														await this.sendNotification(`Eisstatus für ${user_locationName}: ${data_forecasttext}`);
+														await this.sendNotification(`Eisstatus für ${user_locationName} weiterhin: ${data_forecasttext}`);
 														break;
 												}
 												await this.setStateAsync(`${uri}.info.reminderHelper`, { val: false, ack: true });
