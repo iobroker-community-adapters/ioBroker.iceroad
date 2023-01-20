@@ -41,8 +41,9 @@ If the adapter displays the status "Ice" or "Maybe ice", it is possible to be no
 
 ### **WORK IN PROGRESS**
 
--   (ciddi89) fixed issues with reminder
--   (ciddi89) added name and type for channel folders
+-   (ciddi89) Bugfix: reminder doesn't work correctly
+-   (ciddi89) Added: name and type for channel folders
+-   (ciddi89) Other: Small code improvements
 
 ### 1.1.2 (2022-12-23)
 
