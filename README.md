@@ -82,7 +82,7 @@ If the adapter displays the status "Ice" or "Maybe ice", it is possible to be no
 
 The MIT License (MIT)
 
-Copyright (c) 2022 Patrick Walther walther-patrick@gmx.net
+Copyright (c) 2023 Patrick Walther walther-patrick@gmx.net
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
