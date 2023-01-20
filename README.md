@@ -38,8 +38,7 @@ If the adapter displays the status "Ice" or "Maybe ice", it is possible to be no
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 1.1.3 (2023-01-20)
 
 -   (ciddi89) Bugfix: reminder doesn't work correctly
 -   (ciddi89) Added: name and type for channel folders

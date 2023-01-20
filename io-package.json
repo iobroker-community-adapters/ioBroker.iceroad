@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "iceroad",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "news": {
+      "1.1.3": {
+        "en": "Bugfix: reminder doesn't work correctly\nAdded: name and type for channel folders\nOther: Small code improvements",
+        "de": "Bugfix: Erinnerung funktioniert nicht richtig\nHinzugefügt: Name und Typ für Kanalordner\nSonstige: Kleine Codeverbesserungen",
+        "ru": "Bugfix: напоминание не работает правильно\nДобавлено: имя и тип для папок каналов\nДругое: Небольшие улучшения кода",
+        "pt": "Bugfix: lembrete não funciona corretamente\nAdicionado: nome e tipo para pastas de canal\nOutros: Pequenas melhorias de código",
+        "nl": "Herinnering werkt niet goed\nVertaling:\nKleine code verbetering",
+        "fr": "Bugfix: rappel ne fonctionne pas correctement\nAjouté : nom et type pour les dossiers de canal\nAutres : Améliorations de petits codes",
+        "it": "Bugfix: il promemoria non funziona correttamente\nAggiunto: nome e tipo per le cartelle del canale\nAltro: Piccoli miglioramenti del codice",
+        "es": "Bugfix: el recordatorio no funciona correctamente\nAñadido: nombre y tipo para carpetas de canal\nOther: Small code improvements",
+        "pl": "Bugfix: nie działa poprawnie\nAdded: nazwa i typ kanałów\nInne: drobne ulepszenie kodu",
+        "uk": "Помилки: нагадування не працює належним чином\nДодано: назву та тип для папок каналів\nІнше: Невеликі покращення коду",
+        "zh-cn": "Bugfix:提醒确实工作\n增加:传送商的名称和类型\n其他:小法典改进"
+      },
       "1.1.2": {
         "en": "handling if no data was received added",
         "de": "handhabung, wenn keine daten hinzugefügt wurden",
@@ -80,19 +93,6 @@
         "pl": "dodaj lokalizacje, dodaj pushover/telegram/mail",
         "zh-cn": "添加位置，添加pushover/电报/邮件",
         "uk": "додати місця, додати pushover/telegram/mail"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "Erstveröffentlichung",
-        "ru": "Начальная версия",
-        "pt": "lançamento inicial",
-        "nl": "Eerste uitgave",
-        "fr": "Première version",
-        "it": "Versione iniziale",
-        "es": "Versión inicial",
-        "pl": "Pierwsze wydanie",
-        "zh-cn": "首次出版",
-        "uk": "початковий випуск"
       }
     },
     "title": "forecast iceroad",
