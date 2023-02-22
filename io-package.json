@@ -1,188 +1,184 @@
 {
-  "common": {
-    "name": "iceroad",
-    "version": "1.1.3",
-    "news": {
-      "1.1.3": {
-        "en": "Bugfix: reminder doesn't work correctly\nAdded: name and type for channel folders\nOther: Small code improvements",
-        "de": "Bugfix: Erinnerung funktioniert nicht richtig\nHinzugefügt: Name und Typ für Kanalordner\nSonstige: Kleine Codeverbesserungen",
-        "ru": "Bugfix: напоминание не работает правильно\nДобавлено: имя и тип для папок каналов\nДругое: Небольшие улучшения кода",
-        "pt": "Bugfix: lembrete não funciona corretamente\nAdicionado: nome e tipo para pastas de canal\nOutros: Pequenas melhorias de código",
-        "nl": "Herinnering werkt niet goed\nVertaling:\nKleine code verbetering",
-        "fr": "Bugfix: rappel ne fonctionne pas correctement\nAjouté : nom et type pour les dossiers de canal\nAutres : Améliorations de petits codes",
-        "it": "Bugfix: il promemoria non funziona correttamente\nAggiunto: nome e tipo per le cartelle del canale\nAltro: Piccoli miglioramenti del codice",
-        "es": "Bugfix: el recordatorio no funciona correctamente\nAñadido: nombre y tipo para carpetas de canal\nOther: Small code improvements",
-        "pl": "Bugfix: nie działa poprawnie\nAdded: nazwa i typ kanałów\nInne: drobne ulepszenie kodu",
-        "uk": "Помилки: нагадування не працює належним чином\nДодано: назву та тип для папок каналів\nІнше: Невеликі покращення коду",
-        "zh-cn": "Bugfix:提醒确实工作\n增加:传送商的名称和类型\n其他:小法典改进"
-      },
-      "1.1.2": {
-        "en": "handling if no data was received added",
-        "de": "handhabung, wenn keine daten hinzugefügt wurden",
-        "ru": "обработка, если данные не были получены",
-        "pt": "manipulação se nenhum dado foi adicionado",
-        "nl": "als er geen gegevens zijn toegevoegd",
-        "fr": "manipulation si aucune donnée n ' a été reçue",
-        "it": "gestione se non sono stati ricevuti ulteriori dati",
-        "es": "manejo si no se recibieron datos añadidos",
-        "pl": "jeśli nie dodano żadnych danych, nie dodano żadnych danych",
-        "uk": "не додано дані",
-        "zh-cn": "如果没有收到任何数据,则处理。"
-      },
-      "1.1.1": {
-        "en": "changed order in table of longitude and latitude",
-        "de": "geänderte reihenfolge in der tabelle der länge und breite",
-        "ru": "изменен заказ в таблице долготы и широты",
-        "pt": "ordem alterada na tabela de longitude e latitude",
-        "nl": "veranderingsorde in tafel van langdurigheid en breedtegraad",
-        "fr": "changement d'ordre dans le tableau de longitude et de latitude",
-        "it": "cambiato ordine in tavolo di longitudine e latitudine",
-        "es": "orden cambiado en tabla de longitud y latitud",
-        "pl": "zmieniono porządek w stół długiej i szerokości geograficznej",
-        "uk": "змінений порядок в таблиці довготи і широтості",
-        "zh-cn": "长度和纬度变动"
-      },
-      "1.1.0": {
-        "en": "added handling for wrong location data (comma to fullstop)\nadded functionality for reminder notification\nupdated readme",
-        "de": "zusätzliches handling für falsche standortdaten (comma to fullstop)\nzusätzliche funktionalität für erinnerungsmeldung\naktualisierte version",
-        "ru": "добавлена обработка неправильных данных о местоположении (comma to fullstop)\nдобавлена функциональность для оповещения\nобновленный readme",
-        "pt": "manuseio adicionado para dados de localização errada (comma to fullstop)\nfuncionalidade adicionada para notificação de lembrete\nreadme atualizado",
-        "nl": "voegde toegevoegd voor verkeerde locatiegegevens\nvertaling:\nvertaling:",
-        "fr": "traitement ajouté pour les données de localisation incorrectes (comma à fullstop)\nfonctionnalité ajoutée pour la notification de rappel\nmise à jour",
-        "it": "gestione aggiuntiva per dati di localizzazione errati (comma a fullstop)\nfunzionalità aggiunta per la notifica del promemoria\naggiornato",
-        "es": "manejo añadido para datos de ubicación incorrecta (comma a fullstop)\nfuncionalidad agregada para la notificación de recordatorio\nreadme actualizado",
-        "pl": "dodano obsługę nieprawidłowych danych (comma to fullstop)\ndostarczanie informacji o przypomnieniu\nuaktualniać",
-        "uk": "додана обробка даних про неправильне розташування (комітет до повності)\nдодано функціонал для сповіщення нагадування\nоновлений зчитувач",
-        "zh-cn": "处理错误地点数据(通向全信)\n通知的附加功能\n更新"
-      },
-      "1.0.0": {
-        "en": "fixed issue messages wasn't sent\nincreased timeout\nBREAKING CHANGE -> rebuild adapter complete. Please save your data and delete the instance before update\ndrop support for admin 5",
-        "de": "feste meldungen wurden nicht gesendet\nmehr zeitaufwand\nBREAKING CHANGE -> Rebuild Adapter komplett. Bitte speichern Sie Ihre Daten und löschen Sie die Instanz vor dem Update\nunterstützung für admin 5",
-        "ru": "фиксированные сообщения о проблемах не были отправлены\nувеличено timeout\nЗАВТРАК ИЗМЕНЕНИЯ -> перестроить адаптер завершен. Пожалуйста, сохраните свои данные и удалите экземпляр перед обновлением\nподдержка капли для admin 5",
-        "pt": "mensagens de emissão fixas não foram enviadas\naumento do tempo de\nBREAKING CHANGE -> adaptador de reconstrução completo. Por favor, salve seus dados e exclua a instância antes de atualizar\nsuporte drop para admin 5",
-        "nl": "er werden geen berichten gestuurd\nverhoogde time-out\nHerbouwde adapter compleet. Bewaar alsjeblieft je gegevens en verwijder het instituut voor update\nadmin 5",
-        "fr": "des messages fixes n'ont pas été envoyés\naugmentation du temps\nCHANGE BREAKING - Rénover adaptateur complet. Veuillez sauvegarder vos données et supprimer l'instance avant de mettre à jour\ndrop support pour admin 5",
-        "it": "messaggi di emissione fissi non sono stati inviati\naumento del timeout\nBREAKING CHANGE -> Ricostruire l'adattatore completo. Si prega di salvare i dati e cancellare l'istanza prima dell'aggiornamento\nsupporto drop per admin 5",
-        "es": "mensajes de números fijos no fueron enviados\naumento del tiempo\nBREAKING CHANGE - Reconstruyendo adaptador completo. Por favor, guardar sus datos y eliminar la instancia antes de actualizar\nsoporte de gota para admin 5",
-        "pl": "nie została wysłana wiadomość o stałym numerze\nzwiększone czaso\nBREAKING CHANGE -> (ang.). Oszczędne dane i usuwają przykład przed aktualizacją\nadmin 5",
-        "uk": "виправлено повідомлення про проблему не відправлено\nзбільшений час\nBREAKING CHANGE -> перебудувати адаптер завершено. Будь ласка, зберігайте дані та видаліть екземпляр до оновлення\nпідтримка крапель для адміністратора 5",
-        "zh-cn": "定期发出问题讯息\n增加时间\nBAKREANGE - 重建适应者。 请挽救你的数据,在更新前删去这一例子。\nb. 减少对目标5的支助"
-      },
-      "0.1.1": {
-        "en": "Make sure adapter stops when he is done",
-        "de": "Stellen Sie sicher, dass Adapter stoppt, wenn er fertig ist",
-        "ru": "Убедитесь, что адаптер останавливается, когда он делается",
-        "pt": "Certifique-se de que o adaptador pára quando ele é feito",
-        "nl": "Zorg dat adapter stopt als hij klaar is",
-        "fr": "Assurez-vous que l'adaptateur s'arrête quand il est fait",
-        "it": "Assicurarsi che l'adattatore si fermi quando è fatto",
-        "es": "Asegúrate de que el adaptador se detenga cuando haya terminado",
-        "pl": "Umożliwia przyspieszenie, gdy jest on robiony",
-        "zh-cn": "当他做时,确保适应者停止行动",
-        "uk": "Переконайтеся, що адаптер зупинився, коли він закінчить"
-      },
-      "0.1.0": {
-        "en": "add locations, add pushover/telegram/mail",
-        "de": "Standorte hinzufügen, Pushover/Telegramm/Mail hinzufügen",
-        "ru": "добавить локации, добавить pushover/telegram/mail",
-        "pt": "adicionar locais, adicionar pushover/telegram/mail",
-        "nl": "voeg locaties toe, voeg pushover/telegram/mail toe",
-        "fr": "ajouter des emplacements, ajouter pushover/télégramme/courrier",
-        "it": "aggiungi posizioni, aggiungi pushover/telegramma/mail",
-        "es": "agregar ubicaciones, agregar pushover/telegram/mail",
-        "pl": "dodaj lokalizacje, dodaj pushover/telegram/mail",
-        "zh-cn": "添加位置，添加pushover/电报/邮件",
-        "uk": "додати місця, додати pushover/telegram/mail"
-      }
-    },
-    "title": "forecast iceroad",
-    "titleLang": {
-      "en": "forecast iceroad",
-      "de": "Vorhersage Eisstraße",
-      "ru": "прогноз",
-      "pt": "previsão de estrada de gelo",
-      "nl": "voorspelling ijsweg",
-      "fr": "route de glace de prévision",
-      "it": "previsioni iceroad",
-      "es": "pronostico carretera helada",
-      "pl": "prognoza lodowa droga",
-      "zh-cn": "预测冰路",
-      "uk": "прогноз льодовикової дороги"
-    },
-    "desc": {
-      "en": "forecast iceroad",
-      "de": "Vorhersage Eisstraße",
-      "ru": "прогноз",
-      "pt": "previsão de estrada de gelo",
-      "nl": "voorspelling ijsweg",
-      "fr": "route de glace de prévision",
-      "it": "previsioni iceroad",
-      "es": "pronostico carretera helada",
-      "pl": "prognoza lodowa droga",
-      "zh-cn": "预测冰路",
-      "uk": "прогноз льодовикової дороги"
-    },
-    "authors": [
-      "Patrick-Walther <walther-patrick@gmx.net>"
-    ],
-    "keywords": [
-      "weather forecast iceroad"
-    ],
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "main": "main.js",
-    "icon": "iceroad.png",
-    "enabled": false,
-    "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.iceroad/main/admin/iceroad.png",
-    "readme": "https://github.com/iobroker-community-adapters/ioBroker.iceroad/blob/main/README.md",
-    "loglevel": "info",
-    "mode": "schedule",
-    "schedule": "0 * * * *",
-    "allowInit": true,
-    "type": "weather",
-    "compact": true,
-    "connectionType": "cloud",
-    "dataSource": "poll",
-    "materialize": true,
-    "messagebox": true,
-    "subscribe": "messagebox",
-    "tier": 3,
-    "adminUI": {
-      "config": "json"
-    },
-    "dependencies": [
-      {
-        "js-controller": ">=2.0.0"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=6.0.0"
-      }
-    ]
-  },
-  "native": {
-    "checkReminderMessage": true,
-    "reminderHours": 6,
-    "instancePushover": "",
-    "titlePushover": "",
-    "devicePushover": "",
-    "prioPushover": "",
-    "instanceEmail": "",
-    "subjectEmail": "",
-    "sendToEmail": "",
-    "instanceTelegram": "",
-    "deviceTelegram": "",
-    "chatIdTelegram": "",
-    "instanceWhatsapp": "",
-    "phoneWhatsapp": "",
-    "instanceJarvis": "",
-    "titleJarvis": "Ice-Road",
-    "instanceLovelace": "",
-    "titleLovelace": "Ice-Road",
-    "instanceSynochat": "",
-    "channelSynochat": ""
-  },
-  "objects": [],
-  "instanceObjects": []
+	"common": {
+		"name": "iceroad",
+		"version": "1.1.3",
+		"news": {
+			"1.1.3": {
+				"en": "Bugfix: reminder doesn't work correctly\nAdded: name and type for channel folders\nOther: Small code improvements",
+				"de": "Bugfix: Erinnerung funktioniert nicht richtig\nHinzugefügt: Name und Typ für Kanalordner\nSonstige: Kleine Codeverbesserungen",
+				"ru": "Bugfix: напоминание не работает правильно\nДобавлено: имя и тип для папок каналов\nДругое: Небольшие улучшения кода",
+				"pt": "Bugfix: lembrete não funciona corretamente\nAdicionado: nome e tipo para pastas de canal\nOutros: Pequenas melhorias de código",
+				"nl": "Herinnering werkt niet goed\nVertaling:\nKleine code verbetering",
+				"fr": "Bugfix: rappel ne fonctionne pas correctement\nAjouté : nom et type pour les dossiers de canal\nAutres : Améliorations de petits codes",
+				"it": "Bugfix: il promemoria non funziona correttamente\nAggiunto: nome e tipo per le cartelle del canale\nAltro: Piccoli miglioramenti del codice",
+				"es": "Bugfix: el recordatorio no funciona correctamente\nAñadido: nombre y tipo para carpetas de canal\nOther: Small code improvements",
+				"pl": "Bugfix: nie działa poprawnie\nAdded: nazwa i typ kanałów\nInne: drobne ulepszenie kodu",
+				"uk": "Помилки: нагадування не працює належним чином\nДодано: назву та тип для папок каналів\nІнше: Невеликі покращення коду",
+				"zh-cn": "Bugfix:提醒确实工作\n增加:传送商的名称和类型\n其他:小法典改进"
+			},
+			"1.1.2": {
+				"en": "handling if no data was received added",
+				"de": "handhabung, wenn keine daten hinzugefügt wurden",
+				"ru": "обработка, если данные не были получены",
+				"pt": "manipulação se nenhum dado foi adicionado",
+				"nl": "als er geen gegevens zijn toegevoegd",
+				"fr": "manipulation si aucune donnée n ' a été reçue",
+				"it": "gestione se non sono stati ricevuti ulteriori dati",
+				"es": "manejo si no se recibieron datos añadidos",
+				"pl": "jeśli nie dodano żadnych danych, nie dodano żadnych danych",
+				"uk": "не додано дані",
+				"zh-cn": "如果没有收到任何数据,则处理。"
+			},
+			"1.1.1": {
+				"en": "changed order in table of longitude and latitude",
+				"de": "geänderte reihenfolge in der tabelle der länge und breite",
+				"ru": "изменен заказ в таблице долготы и широты",
+				"pt": "ordem alterada na tabela de longitude e latitude",
+				"nl": "veranderingsorde in tafel van langdurigheid en breedtegraad",
+				"fr": "changement d'ordre dans le tableau de longitude et de latitude",
+				"it": "cambiato ordine in tavolo di longitudine e latitudine",
+				"es": "orden cambiado en tabla de longitud y latitud",
+				"pl": "zmieniono porządek w stół długiej i szerokości geograficznej",
+				"uk": "змінений порядок в таблиці довготи і широтості",
+				"zh-cn": "长度和纬度变动"
+			},
+			"1.1.0": {
+				"en": "added handling for wrong location data (comma to fullstop)\nadded functionality for reminder notification\nupdated readme",
+				"de": "zusätzliches handling für falsche standortdaten (comma to fullstop)\nzusätzliche funktionalität für erinnerungsmeldung\naktualisierte version",
+				"ru": "добавлена обработка неправильных данных о местоположении (comma to fullstop)\nдобавлена функциональность для оповещения\nобновленный readme",
+				"pt": "manuseio adicionado para dados de localização errada (comma to fullstop)\nfuncionalidade adicionada para notificação de lembrete\nreadme atualizado",
+				"nl": "voegde toegevoegd voor verkeerde locatiegegevens\nvertaling:\nvertaling:",
+				"fr": "traitement ajouté pour les données de localisation incorrectes (comma à fullstop)\nfonctionnalité ajoutée pour la notification de rappel\nmise à jour",
+				"it": "gestione aggiuntiva per dati di localizzazione errati (comma a fullstop)\nfunzionalità aggiunta per la notifica del promemoria\naggiornato",
+				"es": "manejo añadido para datos de ubicación incorrecta (comma a fullstop)\nfuncionalidad agregada para la notificación de recordatorio\nreadme actualizado",
+				"pl": "dodano obsługę nieprawidłowych danych (comma to fullstop)\ndostarczanie informacji o przypomnieniu\nuaktualniać",
+				"uk": "додана обробка даних про неправильне розташування (комітет до повності)\nдодано функціонал для сповіщення нагадування\nоновлений зчитувач",
+				"zh-cn": "处理错误地点数据(通向全信)\n通知的附加功能\n更新"
+			},
+			"1.0.0": {
+				"en": "fixed issue messages wasn't sent\nincreased timeout\nBREAKING CHANGE -> rebuild adapter complete. Please save your data and delete the instance before update\ndrop support for admin 5",
+				"de": "feste meldungen wurden nicht gesendet\nmehr zeitaufwand\nBREAKING CHANGE -> Rebuild Adapter komplett. Bitte speichern Sie Ihre Daten und löschen Sie die Instanz vor dem Update\nunterstützung für admin 5",
+				"ru": "фиксированные сообщения о проблемах не были отправлены\nувеличено timeout\nЗАВТРАК ИЗМЕНЕНИЯ -> перестроить адаптер завершен. Пожалуйста, сохраните свои данные и удалите экземпляр перед обновлением\nподдержка капли для admin 5",
+				"pt": "mensagens de emissão fixas não foram enviadas\naumento do tempo de\nBREAKING CHANGE -> adaptador de reconstrução completo. Por favor, salve seus dados e exclua a instância antes de atualizar\nsuporte drop para admin 5",
+				"nl": "er werden geen berichten gestuurd\nverhoogde time-out\nHerbouwde adapter compleet. Bewaar alsjeblieft je gegevens en verwijder het instituut voor update\nadmin 5",
+				"fr": "des messages fixes n'ont pas été envoyés\naugmentation du temps\nCHANGE BREAKING - Rénover adaptateur complet. Veuillez sauvegarder vos données et supprimer l'instance avant de mettre à jour\ndrop support pour admin 5",
+				"it": "messaggi di emissione fissi non sono stati inviati\naumento del timeout\nBREAKING CHANGE -> Ricostruire l'adattatore completo. Si prega di salvare i dati e cancellare l'istanza prima dell'aggiornamento\nsupporto drop per admin 5",
+				"es": "mensajes de números fijos no fueron enviados\naumento del tiempo\nBREAKING CHANGE - Reconstruyendo adaptador completo. Por favor, guardar sus datos y eliminar la instancia antes de actualizar\nsoporte de gota para admin 5",
+				"pl": "nie została wysłana wiadomość o stałym numerze\nzwiększone czaso\nBREAKING CHANGE -> (ang.). Oszczędne dane i usuwają przykład przed aktualizacją\nadmin 5",
+				"uk": "виправлено повідомлення про проблему не відправлено\nзбільшений час\nBREAKING CHANGE -> перебудувати адаптер завершено. Будь ласка, зберігайте дані та видаліть екземпляр до оновлення\nпідтримка крапель для адміністратора 5",
+				"zh-cn": "定期发出问题讯息\n增加时间\nBAKREANGE - 重建适应者。 请挽救你的数据,在更新前删去这一例子。\nb. 减少对目标5的支助"
+			},
+			"0.1.1": {
+				"en": "Make sure adapter stops when he is done",
+				"de": "Stellen Sie sicher, dass Adapter stoppt, wenn er fertig ist",
+				"ru": "Убедитесь, что адаптер останавливается, когда он делается",
+				"pt": "Certifique-se de que o adaptador pára quando ele é feito",
+				"nl": "Zorg dat adapter stopt als hij klaar is",
+				"fr": "Assurez-vous que l'adaptateur s'arrête quand il est fait",
+				"it": "Assicurarsi che l'adattatore si fermi quando è fatto",
+				"es": "Asegúrate de que el adaptador se detenga cuando haya terminado",
+				"pl": "Umożliwia przyspieszenie, gdy jest on robiony",
+				"zh-cn": "当他做时,确保适应者停止行动",
+				"uk": "Переконайтеся, що адаптер зупинився, коли він закінчить"
+			},
+			"0.1.0": {
+				"en": "add locations, add pushover/telegram/mail",
+				"de": "Standorte hinzufügen, Pushover/Telegramm/Mail hinzufügen",
+				"ru": "добавить локации, добавить pushover/telegram/mail",
+				"pt": "adicionar locais, adicionar pushover/telegram/mail",
+				"nl": "voeg locaties toe, voeg pushover/telegram/mail toe",
+				"fr": "ajouter des emplacements, ajouter pushover/télégramme/courrier",
+				"it": "aggiungi posizioni, aggiungi pushover/telegramma/mail",
+				"es": "agregar ubicaciones, agregar pushover/telegram/mail",
+				"pl": "dodaj lokalizacje, dodaj pushover/telegram/mail",
+				"zh-cn": "添加位置，添加pushover/电报/邮件",
+				"uk": "додати місця, додати pushover/telegram/mail"
+			}
+		},
+		"title": "forecast iceroad",
+		"titleLang": {
+			"en": "forecast iceroad",
+			"de": "Vorhersage Eisstraße",
+			"ru": "прогноз",
+			"pt": "previsão de estrada de gelo",
+			"nl": "voorspelling ijsweg",
+			"fr": "route de glace de prévision",
+			"it": "previsioni iceroad",
+			"es": "pronostico carretera helada",
+			"pl": "prognoza lodowa droga",
+			"zh-cn": "预测冰路",
+			"uk": "прогноз льодовикової дороги"
+		},
+		"desc": {
+			"en": "forecast iceroad",
+			"de": "Vorhersage Eisstraße",
+			"ru": "прогноз",
+			"pt": "previsão de estrada de gelo",
+			"nl": "voorspelling ijsweg",
+			"fr": "route de glace de prévision",
+			"it": "previsioni iceroad",
+			"es": "pronostico carretera helada",
+			"pl": "prognoza lodowa droga",
+			"zh-cn": "预测冰路",
+			"uk": "прогноз льодовикової дороги"
+		},
+		"authors": ["Patrick-Walther <walther-patrick@gmx.net>", "Christian Behrends (ciddi89) <mail@christian-behrends.de>"],
+		"keywords": ["weather forecast iceroad"],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "main.js",
+		"icon": "iceroad.png",
+		"enabled": false,
+		"extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.iceroad/main/admin/iceroad.png",
+		"readme": "https://github.com/iobroker-community-adapters/ioBroker.iceroad/blob/main/README.md",
+		"loglevel": "info",
+		"mode": "schedule",
+		"schedule": "0 * * * *",
+		"allowInit": true,
+		"type": "weather",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"materialize": true,
+		"messagebox": true,
+		"subscribe": "messagebox",
+		"tier": 3,
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=2.0.0"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": ">=6.0.0"
+			}
+		]
+	},
+	"native": {
+		"checkReminderMessage": true,
+		"reminderHours": 6,
+		"instancePushover": "",
+		"titlePushover": "",
+		"devicePushover": "",
+		"prioPushover": "",
+		"instanceEmail": "",
+		"subjectEmail": "",
+		"sendToEmail": "",
+		"instanceTelegram": "",
+		"deviceTelegram": "",
+		"chatIdTelegram": "",
+		"instanceWhatsapp": "",
+		"phoneWhatsapp": "",
+		"instanceJarvis": "",
+		"titleJarvis": "Ice-Road",
+		"instanceLovelace": "",
+		"titleLovelace": "Ice-Road",
+		"instanceSynochat": "",
+		"channelSynochat": ""
+	},
+	"objects": [],
+	"instanceObjects": []
 }
