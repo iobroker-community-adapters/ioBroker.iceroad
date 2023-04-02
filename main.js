@@ -88,7 +88,7 @@ class Iceroad extends utils.Adapter {
 			method: 'get',
 			baseURL: this.apiUrl,
 			url: requestUrl,
-			timeout: 5000,
+			timeout: 10000,
 			responseType: 'json',
 		})
 			.then((response) => {
