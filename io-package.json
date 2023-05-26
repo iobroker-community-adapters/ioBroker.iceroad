@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "iceroad",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "news": {
+      "1.2.1": {
+        "en": "Updated dependecies\nincreased timeout for axios to ten seconds",
+        "de": "Aktualisierte Abhängigkeiten\nerhöhter timeout für axios auf zehn sekunden",
+        "ru": "Обновленные зависимости\nувеличение таймаут для осио до 10 секунд",
+        "pt": "Dependências atualizadas\naumento do tempo de axios para dez segundos",
+        "nl": "Verouderde afhankelijkheid\nverhoogde time-out voor 10 seconden",
+        "fr": "Mise à jour des dépendances\naugmentation du temps d'attente pour axios à dix secondes",
+        "it": "Dipendenze aggiornate\naumento del timeout per assios a dieci secondi",
+        "es": "Dependencias actualizadas\naumento de tiempo para axios a 10 segundos",
+        "pl": "Upowszechnianie zależności\nwzrosły czas na axios do 10 sekund",
+        "uk": "Оновлені залежності\nзбільшений час для осей до десяти секунд",
+        "zh-cn": "最新依赖情况\n十二. 将焦虑增加至十秒"
+      },
       "1.2.0": {
         "en": "Updated dependencies",
         "de": "Aktualisierte Abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "nie została wysłana wiadomość o stałym numerze\nzwiększone czaso\nBREAKING CHANGE -> (ang.). Oszczędne dane i usuwają przykład przed aktualizacją\nadmin 5",
         "uk": "виправлено повідомлення про проблему не відправлено\nзбільшений час\nBREAKING CHANGE -> перебудувати адаптер завершено. Будь ласка, зберігайте дані та видаліть екземпляр до оновлення\nпідтримка крапель для адміністратора 5",
         "zh-cn": "定期发出问题讯息\n增加时间\nBAKREANGE - 重建适应者。 请挽救你的数据,在更新前删去这一例子。\nb. 减少对目标5的支助"
-      },
-      "0.1.1": {
-        "en": "Make sure adapter stops when he is done",
-        "de": "Stellen Sie sicher, dass Adapter stoppt, wenn er fertig ist",
-        "ru": "Убедитесь, что адаптер останавливается, когда он делается",
-        "pt": "Certifique-se de que o adaptador pára quando ele é feito",
-        "nl": "Zorg dat adapter stopt als hij klaar is",
-        "fr": "Assurez-vous que l'adaptateur s'arrête quand il est fait",
-        "it": "Assicurarsi che l'adattatore si fermi quando è fatto",
-        "es": "Asegúrate de que el adaptador se detenga cuando haya terminado",
-        "pl": "Umożliwia przyspieszenie, gdy jest on robiony",
-        "zh-cn": "当他做时,确保适应者停止行动",
-        "uk": "Переконайтеся, що адаптер зупинився, коли він закінчить"
       }
     },
     "title": "forecast iceroad",
