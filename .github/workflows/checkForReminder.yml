@@ -5,6 +5,8 @@ on:
         types: [created, edited]
     issues:
         types: [opened, edited]
+    schedule:
+        - cron: '*/1  * * * *'
 
 jobs:
     reminder:
