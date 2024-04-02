@@ -95,7 +95,6 @@
         "zh-cn": "定期发出问题讯息\n增加时间\nBAKREANGE - 重建适应者。 请挽救你的数据,在更新前删去这一例子。\nb. 减少对目标5的支助"
       }
     },
-    "title": "Ice warning",
     "titleLang": {
       "en": "Ice warning",
       "de": "Eiswarnung",
@@ -129,7 +128,10 @@
     "keywords": [
       "weather forecast iceroad"
     ],
-    "license": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "platform": "Javascript/Node.js",
     "main": "main.js",
     "icon": "iceroad.png",
@@ -153,7 +155,7 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=2.0.0"
+        "js-controller": ">=5.0.0"
       }
     ],
     "globalDependencies": [
