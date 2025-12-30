@@ -123,7 +123,8 @@
     },
     "authors": [
       "Patrick-Walther <walther-patrick@gmx.net>",
-      "Christian Behrends (ciddi89) <mail@christian-behrends.de>"
+      "Christian Behrends (ciddi89) <mail@christian-behrends.de>",
+      "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
     ],
     "keywords": [
       "weather forecast iceroad"
@@ -155,12 +156,12 @@
     },
     "dependencies": [
       {
-        "js-controller": ">=5.0.0"
+        "js-controller": ">=6.0.11"
       }
     ],
     "globalDependencies": [
       {
-        "admin": ">=6.0.0"
+        "admin": ">=7.6.17"
       }
     ]
   },
