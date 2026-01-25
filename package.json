@@ -9,6 +9,7 @@
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.iceroad",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "weather forecast iceroad"
   ],
   "repository": {
