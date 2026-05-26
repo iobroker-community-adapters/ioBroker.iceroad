@@ -146,7 +146,6 @@
     "compact": true,
     "connectionType": "cloud",
     "dataSource": "poll",
-    "materialize": true,
     "messagebox": true,
     "subscribe": "messagebox",
     "tier": 3,
