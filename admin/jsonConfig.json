@@ -22,7 +22,6 @@
 				"tableLocation": {
 					"type": "table",
 					"label": "Add your Location",
-					"nodelete": true,
 					"sm": 12,
 					"md": 12,
 					"lg": 12,
