@@ -224,13 +224,16 @@ class Iceroad extends utils.Adapter {
 										}
 									} else if (this.config.checkReminderMessage) {
 										const lastStateChangeofID = await this.getStateAsync(`${uri}.forecastId`);
+										// Skip reminder check if the state does not exist yet (e.g. on first run)
+										// -> fixes "TypeError: Cannot read properties of null (reading 'lc')"
+										if (lastStateChangeofID && lastStateChangeofID.lc) {
 										const timeLastStateChangeOfID = Math.round((new Date() - new Date(lastStateChangeofID.lc)) / 1000 / 60 / 60);
 
 										//helper datapoint for reminder function
 										const lastStateOfHelper = await this.getStateAsync(`${uri}.info.reminderHelper`);
-										const lastStateChangeofHelper = Math.round((new Date() - new Date(lastStateOfHelper.lc)) / 1000 / 60 / 60);
+										const lastStateChangeofHelper = lastStateOfHelper && lastStateOfHelper.lc ? Math.round((new Date() - new Date(lastStateOfHelper.lc)) / 1000 / 60 / 60) : null;
 										if (timeLastStateChangeOfID >= this.config.reminderHours) {
-											if (lastStateOfHelper.val === false && lastStateChangeofHelper >= this.config.reminderHours) {
+											if (lastStateOfHelper && lastStateOfHelper.val === false && (lastStateChangeofHelper === null || lastStateChangeofHelper >= this.config.reminderHours)) {
 												await this.setStateAsync(`${uri}.info.reminderHelper`, { val: true, ack: true });
 												switch (data_forecastid) {
 													case 1: // ICE
@@ -243,6 +246,7 @@ class Iceroad extends utils.Adapter {
 												}
 												await this.setStateAsync(`${uri}.info.reminderHelper`, { val: false, ack: true });
 											}
+										}
 										}
 									}
 								}
